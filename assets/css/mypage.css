@@ -1,0 +1,63 @@
+.profile_img{
+    width: 100%;
+    height: 230px;
+}
+.profile_desc{
+    padding: 10px;
+}
+.intro{
+    margin-bottom: 10px;
+}
+.intro ul li span{
+    float: right;
+    color: #00000080;
+}
+#mypage{
+    margin-top: 40px;
+}
+#mypage h2{
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+#mypage p{
+    margin-bottom: 40px;
+    border-bottom: 1px solid #0000001c;
+    padding-bottom: 40px;
+    color: #0000007a;
+}
+
+.menu_mypage_cont{
+    /* padding: 0 20px; */
+}
+
+.mypage_info{
+    width: 25%;
+    background: #fff;
+    font-size: 14px;
+    box-shadow: 0px 30px 30px -20px #0000002b;
+}
+
+.mypage_cont{
+    display: flex;
+    justify-content: space-between;
+}
+
+.mypage_cont .btn{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+.mypage_cont .btn a{
+    /* background: #fff; */
+    padding: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #0000001c;
+}
+.mypage_cont .btn a em{
+    color: rgba(0, 0, 0, 0.429);
+    font-size: 14px;
+    margin-left: 20px;
+}
