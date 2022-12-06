@@ -45,8 +45,8 @@
                         <span class="date"><?=date('Y-m-d', $blogInfo['blogRegTime'])?></span>
                     </div>
                     <div>
-                        <a href="" class="modify">수정</a>
-                        <a href="" class="delete">삭제</a>
+                        <!-- <a href="" class="modify">수정</a>
+                        <a href="" class="delete">삭제</a> -->
                     </div>
                 </div>
             </div>

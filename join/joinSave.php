@@ -46,15 +46,6 @@
         echo "<p class='alert'>${alert}</p>";
         echo "<a class='btn btn_style1 mt30' href='../login/login.php'>로그인</a>";
     }
-    // echo $youEmail, $youName, $youPass, $youPhone, $regTime;
-    // $sql = "INSERT INTO hwangMember(youEmail, youName, youPass, youPhone, regTime) VALUES('$youEmail', '$youName', '$youPass', '$youPhone', '$regTime')";
-    // $connect -> query($sql);
-    // 유효성 검사
-    // 이메일 체크(정규식 표현)
-    // $check_email = preg_match("/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i", $youEmail);
-    // if($check_email == false){
-    //     echo "이메일이 잘모되었습니다.<br> 올바른 이메일을 작성해주세요";
-    // }
 
     // 이메일 체크(내장 함수)
     $check_email = filter_var($youEmail, FILTER_VALIDATE_EMAIL);
