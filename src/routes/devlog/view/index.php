@@ -74,8 +74,8 @@
                         $postID = $connect -> real_escape_string(trim($_GET['postID']));
 
                         echo "
-                            <a href='/devlog/modify?postID={$postID}'>수정하기</a>
-                            <a href='/devlog/modify/remove?postID={$postID}'>삭제하기</a>
+                            <a href='/src/routes/devlog/modify/save?postID={$postID}'>수정하기</a>
+                            <a href='/src/routes/devlog/modify/save/remove?postID={$postID}'>삭제하기</a>
                             <a href='/devlog'>목록보기</a>
                         ";
                     ?>

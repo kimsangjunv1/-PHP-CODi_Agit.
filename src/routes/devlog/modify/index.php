@@ -53,7 +53,7 @@
                         id="form"
                         method="post"
                         name="boardModify"
-                        action="/devlog/modify/save"
+                        action="/src/routes/devlog/modify/save/save"
                         enctype="multipart/form-data"
                     >
                         <fieldset>

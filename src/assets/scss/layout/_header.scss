@@ -7,7 +7,6 @@ header {
     height: var(--header-height);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    padding: 2.4rem var(--between-space);
     mask-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 57.5%, rgba(0, 0, 0, 0) 100%);
 
     .container-inner {
