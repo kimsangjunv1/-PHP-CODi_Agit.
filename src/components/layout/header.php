@@ -26,7 +26,7 @@
                     <a href="/mypage/mypage.php"><?= $_SESSION['youName']?>님 ✨</a>
                 <?php } else { ?>
                     <!-- <a href="/join">회원가입</a> -->
-                    <a href="/login">로그인</a>
+                    <a href="/login">로그인/회원가입</a>
                 <?php } ?>
             </section>
         </nav>
