@@ -22,10 +22,10 @@
 
             <section class="info">
                 <?php if ( $isNowLogin ) { ?>
-                    <a href="/login/leave">로그아웃</a>
+                    <!-- <a href="/login/leave">로그아웃</a> -->
                     <a href="/mypage/mypage.php"><?= $_SESSION['youName']?>님 ✨</a>
                 <?php } else { ?>
-                    <a href="/join">회원가입</a>
+                    <!-- <a href="/join">회원가입</a> -->
                     <a href="/login">로그인</a>
                 <?php } ?>
             </section>
