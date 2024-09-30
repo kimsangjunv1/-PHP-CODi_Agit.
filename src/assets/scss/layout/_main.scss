@@ -1,26 +1,26 @@
 main {
-    &::after,
-    &::before {
-        content: '';
-        position: fixed;
-        transform: translate(-50%, -50%);
-        border-radius: 100%;
-        height: 1000px;
-        width: 1000px;
-        z-index: -1;
-    }
+    // &::after,
+    // &::before {
+    //     content: '';
+    //     position: fixed;
+    //     transform: translate(-50%, -50%);
+    //     border-radius: 100%;
+    //     height: 1000px;
+    //     width: 1000px;
+    //     z-index: -1;
+    // }
 
-    &::before {
-        background: radial-gradient(#F2C85D80 -270%, #fffbf800 57%);
-        top: 0%;
-        left: 75%;
-    }
+    // &::before {
+    //     background: radial-gradient(#F2C85D80 -270%, #fffbf800 57%);
+    //     top: 0%;
+    //     left: 75%;
+    // }
     
-    &::after {
-        background: radial-gradient(#F5665380 -270%, #fffbf800 57%);
-        top: 20%;
-        left: 30%;
-    }
+    // &::after {
+    //     background: radial-gradient(#F5665380 -270%, #fffbf800 57%);
+    //     top: 20%;
+    //     left: 30%;
+    // }
 
     > .container-inner {
         display: flex;
@@ -32,27 +32,27 @@ main {
         margin: 0 auto;
         padding-top: var(--header-height);
 
-        &::after,
-        &::before {
-            content: "";
-            position: fixed;
-            transform: translate(-50%, -50%);
-            border-radius: 100%;
-            height: 1000px;
-            width: 1000px;
-            z-index: -1;
-        }
+        // &::after,
+        // &::before {
+        //     content: "";
+        //     position: fixed;
+        //     transform: translate(-50%, -50%);
+        //     border-radius: 100%;
+        //     height: 1000px;
+        //     width: 1000px;
+        //     z-index: -1;
+        // }
 
-        &::before {
-            background: radial-gradient(#f5665380 -270%, #fffbf800 57%);
-            top: 90%;
-            left: 75%;
-        }
+        // &::before {
+        //     background: radial-gradient(#f5665380 -270%, #fffbf800 57%);
+        //     top: 90%;
+        //     left: 75%;
+        // }
         
-        &::after {
-            background: radial-gradient(#F2C85D80 -270%, #fffbf800 57%);
-            top: 60%;
-            left: 50%;
-        }
+        // &::after {
+        //     background: radial-gradient(#F2C85D80 -270%, #fffbf800 57%);
+        //     top: 60%;
+        //     left: 50%;
+        // }
     }
 }
