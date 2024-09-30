@@ -17,7 +17,6 @@
         <nav>
             <section class="menu">
                 <a href="/home"><span>홈</span></a>
-                <a href="/tip"><span>오류해결 및 팁</span></a>
                 <a href="/devlog"><span>데브로그</span></a>
             </section>
 

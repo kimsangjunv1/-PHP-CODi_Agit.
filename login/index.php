@@ -9,8 +9,8 @@
     $rootPath = $_SERVER['DOCUMENT_ROOT'];
 
     // MySQL 연결
-    include $rootPath . "/connect/connect.php";
-    include $rootPath . "/connect/session.php";
+    include $rootPath . "/src/components/common/component_connect.php";
+    include $rootPath . "/src/components/common/component_session.php";
 ?>
 
 <!DOCTYPE html>
@@ -32,11 +32,10 @@
         <main id="login">
             <section class="container-inner">
                 <article>
-                    <h2 class="login__logo">PHP BLOG</h2>
+                    <h2>PHP BLOG</h2>
                     <p>
-                        로그인을 하시면 게시글 및 댓글 작성이 가능합니다.<br>
-                        회원가입을 하면 로그인을 할 수 있습니다.<br>
-                        구경하시려면 admin@naver.com / 1234를 입력해주세요!
+                        로그인을 하시면 댓글 작성이 가능해요,<br>
+                        임시 로그인이 필요하시다면 하단의 게스트 로그인을 클릭해주세요!
                     </p>
                 </article>
 
@@ -58,11 +57,14 @@
                 </article>
 
                 <article>
-                    <ul>
-                        <li>회원가입을 하지 않았다면 회원가입 먼저 해주세요! <a href="/join" class="link">회원가입</a></li>
-                        <li>아이디가 기억이 나지 않는다면. <a href="#" class="link">아이디 찾기</a></li>
-                        <li>비밀번호가 기억이 나지 않는다면. <a href="#" class="link">비밀번호 찾기</a></li>
-                    </ul>
+                    <section>
+                        <a href="/join">회원가입</a>
+                        <a href="/login">게스트 로그인</a>
+                    </section>
+                    <section>
+                        <a href="#">아이디 찾기</a>
+                        <a href="#">비밀번호 찾기</a>
+                    </section>
                 </article>
             </section>
         </main>

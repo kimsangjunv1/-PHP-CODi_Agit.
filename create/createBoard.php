@@ -3,7 +3,7 @@
     $rootPath = $_SERVER['DOCUMENT_ROOT'];
 
     // MySQL 연결
-    include $rootPath . "/connect/connect.php";
+    include $rootPath . "/src/components/common/component_connect.php";
     
     $sql = "
         CREATE TABLE boardDevlog(
