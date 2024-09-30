@@ -1,5 +1,6 @@
 <?php
     include "../connect/connect.php";
+    
     $sql = "CREATE TABLE classBlog(";
     $sql .= "blogID int(10) unsigned auto_increment,";
     $sql .= "memberID int(10) unsigned NOT NULL,";
@@ -16,10 +17,12 @@
     $sql .= "blogModTime int(20) DEFAULT NULL,";
     $sql .= "PRIMARY KEY (blogID)";
     $sql .= ") charset=utf8;";
+
     $result = $connect -> query($sql);
-    if($result){
-        echo "create table true";
+
+    if ( $result ) {
+        echo "테이블 생성 성공 하였습니다.";
     } else {
-        echo "create table false";
+        echo "테이블 생성에 실패 하였습니다.";
     }
 ?>

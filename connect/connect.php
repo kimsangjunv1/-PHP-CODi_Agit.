@@ -1,8 +1,8 @@
 <?php
     $host = "localhost";
-    $user = "vvv0032";
+    $user = "codi";
     $pass = "Hhd3712493!";
-    $db = "vvv0032";
+    $db = "codi";
 
     $connect = new mysqli($host, $user, $pass, $db);    
     $connect -> set_charset("utf8");

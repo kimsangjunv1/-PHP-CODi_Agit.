@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP 사이트 만들기</title>
 
-    <?php include "../include/head.php"?>
+    <?php include "../src/components/layout/head.php"?>
 </head>
 <body>
     <div id="skip">
@@ -21,11 +21,40 @@
     </div>
     <!-- //skip -->
 
-    <?php include "../include/header.php"?>
+    <?php include "../src/components/layout/header.php"?>
     <!-- header -->
     
     <main id="mainblog">
-        <img class="main_bg" src="../assets/img/main_bg02.jpg" alt="">
+        <style>
+            .main_three{
+                margin-bottom: 200px;
+    height: 750px;
+    object-fit: cover;
+    overflow: hidden;
+    position: relative;
+            }
+            .main_three::before,
+            .main_three::after{
+                position:absolute;
+                content:''
+            }
+            .main_three::before{
+                bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 405px;
+    background: linear-gradient(0deg, #f8f9fa 10%, transparent);
+    z-index: 1;
+            }
+            .main_three canvas{
+                position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+            }
+        </style>
+        <div class="main_three"></div>
+        <!-- <img class="main_bg" src="../assets/img/main_bg02.jpg" alt=""> -->
         <section id="main" class="container section">
         <?php include "../include/mainOne.php" ?>
             <div class="main_cont">
@@ -118,7 +147,7 @@
 <?php
 
     // 두개의 테이블 join
-    $sql = "SELECT b.boardID, b.boardTitle, m.youName, b.regTime, b.boardView FROM classBoard b JOIN classMember m ON (b.memberID = m.memberID) ORDER BY boardID DESC LIMIT 5";
+    $sql = "SELECT b.postID, b.postTitle, m.youName, b.regTime, b.postView FROM boardDevlog b JOIN classMember m ON (b.memberID = m.memberID) ORDER BY postID DESC LIMIT 5";
     $result = $connect -> query($sql);
     if($result){
         $count = $result -> num_rows;
@@ -126,11 +155,11 @@
             for($i=1; $i <= $count; $i++){
                 $info = $result -> fetch_array(MYSQLI_ASSOC);
                 echo "<tr>";
-                echo "<td>".$info['boardID']."</td>";
-                echo "<td><a href='../board/boardView.php?boardID={$info['boardID']}'>".$info['boardTitle']."</td>";
+                echo "<td>".$info['postID']."</td>";
+                echo "<td><a href='../board/postView.php?postID={$info['postID']}'>".$info['postTitle']."</td>";
                 echo "<td>".$info['youName']."</td>";
                 echo "<td>".date('Y-m-d', $info['regTime'])."</td>";
-                echo "<td>".$info['boardView']."</td>";
+                echo "<td>".$info['postView']."</td>";
                 echo "</tr>";
             }
         } else {
@@ -158,8 +187,8 @@
     </main>
     <!-- //main -->
 
-    <?php include "../include/footer.php"?>
+    <?php include "../src/components/layout/footer.php"?>
     <!-- footer -->
 </body>
-
+<script src="../assets/js/nova.js" type="module"></script>
 </html>

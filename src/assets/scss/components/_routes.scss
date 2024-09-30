@@ -1,0 +1,20 @@
+main {
+
+    // 경로 : 홈 페이지
+    &#home {
+        .container-inner {
+            > article {
+                width: 100%;
+            }
+        }
+    }
+
+    // 경로 : 로그인 페이지
+    &#login {
+        .container-inner {
+            > article {
+                width: 100%;
+            }
+        }
+    }
+}

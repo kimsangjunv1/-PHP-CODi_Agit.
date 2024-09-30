@@ -1,0 +1,33 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000000;
+    height: var(--header-height);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 2.4rem var(--between-space);
+    mask-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 57.5%, rgba(0, 0, 0, 0) 100%);
+
+    .container-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: var(--pc);
+        height: 100%;
+        margin: 0 auto;
+
+        > a {
+            > img {
+                width: 12.4rem;
+            }
+        }
+
+        > nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 1.6rem;
+        }
+    }
+}

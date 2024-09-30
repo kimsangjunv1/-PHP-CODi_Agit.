@@ -1,19 +1,28 @@
 <?php
-    include "../connect/connect.php";
-    $sql = "CREATE TABLE classBoard(";
-    $sql .= "boardID int(10) unsigned NOT NULL auto_increment,";
-    $sql .= "memberID int(10) NOT NULL,";
-    $sql .= "boardTitle varchar(50) NOT NULL,";
-    $sql .= "boardContents longtext NOT NULL,";
-    $sql .= "boardView int(10) NOT NULL,";
-    $sql .= "regTime int(20) NOT NULL,";
-    $sql .= "PRIMARY KEY (boardID)";
-    $sql .= ") charset=utf8;";
+    // 최상위 경로
+    $rootPath = $_SERVER['DOCUMENT_ROOT'];
+
+    // MySQL 연결
+    include $rootPath . "/connect/connect.php";
+    
+    $sql = "
+        CREATE TABLE boardDevlog(
+        postID int(10) unsigned NOT NULL auto_increment,
+        memberID int(10) NOT NULL,
+        postTitle varchar(50) NOT NULL,
+        postContents longtext NOT NULL,
+        postView int(10) NOT NULL,
+        postImgFileUrl varchar(100) DEFAULT NULL,
+        regTime int(20) NOT NULL,
+        PRIMARY KEY (postID)
+        ) charset=utf8;
+    ";
+    
     $result = $connect -> query($sql);
 
-    if($result){
-        echo "create table true";
+    if ( $result ) {
+        echo "테이블 생성 성공 하였습니다.";
     } else {
-        echo "create table false";
+        echo "테이블 생성에 실패 하였습니다." . $connect->error;
     }
 ?>
