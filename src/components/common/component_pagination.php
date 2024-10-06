@@ -4,6 +4,16 @@
 <article id="pagination">
     <ul>
         <?php
+            // 쿼리를 실행하고 결과를 `$result`에 저장.
+            $result = $connect -> query($postQuery);
+            
+            if ($result) {
+                $totalPosts = $result -> num_rows;
+            } else {
+                // 쿼리 실패 시 에러 처리
+                echo "Error: " . $connect->error;
+            };
+
             // 총 페이지 갯수 계산
             $totalPages = max( 1, ceil($totalPosts / $viewNum) ); // 최소 1페이지
 

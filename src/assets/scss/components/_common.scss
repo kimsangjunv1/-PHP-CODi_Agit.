@@ -1,0 +1,93 @@
+// 리스트
+.list {
+    .item {
+        // 수평
+        &.horizontal {
+            
+        }
+
+        // 수직
+        &.vertical {
+
+        }
+
+        // 없을때
+        &.empty {
+
+        }
+    }
+}
+
+.label {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.input {
+    width: 100%;
+    color: var(--color-gray-700);
+    font-size: 1.4rem;
+    
+    &.border {
+        padding: 0.2rem 1.6rem;
+        border: 1px solid var(--color-gray-100);
+        border-radius: 0.8rem;
+    }
+
+    &.underline {
+        border: none;
+        border-bottom: 1px solid var(--color-gray-100);
+    }
+}
+
+.button {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 0.8rem;
+
+    &.border {
+        border: 1px solid var(--color-gray-500);
+    }
+
+    &.gray {
+        background: var(--color-gray-100);
+        border: 1px solid var(--color-gray-100);
+        color: var(--color-gray-500);
+    }
+
+    &.brand {
+        background: var(--color-brand-500);
+        border: 1px solid var(--color-brand-500);
+        color: white;
+    }
+    
+    &.black {
+        background: black;
+        border: 1px solid black;
+        color: white;
+    }
+
+    // 사이즈
+    &.sm {
+        padding: 0.2rem 0.4rem;
+    }
+    
+    &.lg {
+        padding: 1.6rem;
+        width: 100%;
+    }
+}
+
+.notice {
+    background: var(--color-blue-50);
+    padding: 0.8rem;
+    border-radius: 0.8rem;
+    
+    > p {
+        color: var(--color-blue-500);
+        font-size: 1.2rem;
+        text-align: center;
+        line-height: 1.5;
+    }
+}

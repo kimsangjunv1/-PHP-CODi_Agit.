@@ -5,28 +5,85 @@ header {
     width: 100%;
     z-index: 1000000;
     height: var(--header-height);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    mask-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 57.5%, rgba(0, 0, 0, 0) 100%);
+    // background: linear-gradient(180deg, #F8F8FC 0%, transparent 100%);
+    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1) height;
+    background: white;
 
     .container-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        max-width: var(--pc);
         height: 100%;
-        margin: 0 auto;
 
-        > a {
-            > img {
-                width: 12.4rem;
+        .contents {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: var(--pc);
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 1.6rem;
+            mask-image: linear-gradient(to bottom, #000, #000 12.5%, #000 37.5%, rgba(0, 0, 0, 0));
+            backdrop-filter: blur(20px);
+    
+            > a {
+                > strong {
+                    font-weight: 700;
+                    color: var(--color-brand-500);
+                }
+            }
+    
+            > nav {
+                display: flex;
+                justify-content: space-between;
+                gap: 1.6rem;
+
+                > section {
+                    &:first-child {
+                        a {
+                            font-size: 1.4rem;
+                        }
+                    }
+                    &:last-child {
+                        a {
+                            padding: 0.8rem 1.2rem;
+                            border-radius: 100px;
+                            border: 1px solid var(--color-gray-100);
+                            font-size: 1.4rem;
+                        }
+                    }
+                }
             }
         }
 
-        > nav {
-            display: flex;
-            justify-content: space-between;
-            gap: 1.6rem;
+        .progress-container {
+            #progress {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 0.4rem;
+    
+                .bar {
+                    height: 100%;
+                    width: 0%;
+                    background: var(--color-brand-500);
+                    border-radius: 0.8rem;
+                }
+            }
         }
+    }
+
+    &.resize {
+        height: calc(var(--header-height) / 1.5);
+    }
+
+
+    &::after {
+        // content: '';
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        background: linear-gradient(180deg, white 0%, transparent 100%);
+        pointer-events: none;
     }
 }

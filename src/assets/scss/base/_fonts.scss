@@ -36,3 +36,40 @@
         url("/src/assets/fonts/NexonLv1/bold/NexonGothic-Bold.ttf") format("truetype"),
         url("/src/assets/fonts/NexonLv1/bold/NexonGothic-Bold.eot") format("truetype");
 }
+
+// SUITE 폰트
+@font-face {
+	font-family: 'SUITE';
+	font-weight: 300;
+	src: url('/src/assets/fonts/suite/ttf/SUITE-Light.ttf') format("truetype"), url('/src/assets/fonts/suite/woff2/SUITE-Light.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'SUITE';
+	font-weight: 400;
+	src: url('/src/assets/fonts/suite/ttf/SUITE-Regular.ttf') format("truetype"), url('/src/assets/fonts/suite/woff2/SUITE-Regular.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'SUITE';
+	font-weight: 500;
+	src: url('/src/assets/fonts/suite/ttf/SUITE-Medium.ttf') format("truetype"), url('/src/assets/fonts/suite/woff2/SUITE-Medium.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'SUITE';
+	font-weight: 600;
+	src: url('/src/assets/fonts/suite/ttf/SUITE-SemiBold.ttf') format("truetype"), url('/src/assets/fonts/suite/woff2/SUITE-SemiBold.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'SUITE';
+	font-weight: 700;
+	src: url('/src/assets/fonts/suite/ttf/SUITE-Bold.ttf') format("truetype"), url('/src/assets/fonts/suite/woff2/SUITE-Bold.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'SUITE';
+	font-weight: 800;
+	src: url('/src/assets/fonts/suite/ttf/SUITE-ExtraBold.ttf') format("truetype"), url('/src/assets/fonts/suite/woff2/SUITE-ExtraBold.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'SUITE';
+	font-weight: 900;
+	src: url('/src/assets/fonts/suite/ttf/SUITE-Heavy.ttf') format("truetype"), url('/src/assets/fonts/suite/woff2/SUITE-Heavy.woff2') format('woff2');
+}

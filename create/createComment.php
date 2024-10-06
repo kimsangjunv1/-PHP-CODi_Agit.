@@ -1,17 +1,23 @@
 <?php
-    include "../connect/connect.php";
+    // 최상위 경로
+    $rootPath = $_SERVER['DOCUMENT_ROOT'];
+
+    // MySQL 연결
+    include $rootPath . "/src/components/common/component_connect.php";
     
-    $sql = "CREATE TABLE classComment(";
-    $sql .= "commentID int(10) unsigned auto_increment,";
-    $sql .= "memberID int(10) NOT NULL,";
-    $sql .= "blogID int(10) NOT NULL,";
-    $sql .= "commentName varchar(30) NOT NULL,";
-    $sql .= "commentMsg varchar(255) NOT NULL,";
-    $sql .= "commentPass varchar(10) NOT NULL,";
-    $sql .= "commentDelete int(10) NOT NULL,";
-    $sql .= "regTime int(20) NOT NULL,";
-    $sql .= "PRIMARY KEY (commentID)";
-    $sql .= ") charset=utf8;";
+    $sql = "
+        CREATE TABLE boardComment(
+        commentID int(10) unsigned auto_increment,
+        memberID int(10) NOT NULL,
+        blogID int(10) NOT NULL,
+        commentName varchar(30) NOT NULL,
+        commentMsg varchar(255) NOT NULL,
+        commentPass varchar(10) NOT NULL,
+        commentDelete int(10) NOT NULL,
+        regTime int(20) NOT NULL,
+        PRIMARY KEY (commentID)
+        ) charset=utf8;
+    ";
     
     $result = $connect -> query($sql);
 

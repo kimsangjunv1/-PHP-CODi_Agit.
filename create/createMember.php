@@ -1,16 +1,23 @@
 <?php
-    include "../connect/connect.php";
+    // 최상위 경로
+    $rootPath = $_SERVER['DOCUMENT_ROOT'];
+
+    // MySQL 연결
+    include $rootPath . "/src/components/common/component_connect.php";
     
-    $sql = "CREATE TABLE classMember(";
-    $sql .= "memberID int(10) unsigned NOT NULL AUTO_INCREMENT,";
-    $sql .= "youEmail varchar(40) UNIQUE NOT NULL,";
-    $sql .= "youName varchar(10) NOT NULL,";
-    $sql .= "youPass varchar(50) NOT NULL,";
-    $sql .= "youPhone varchar(20) NOT NULL,";
-    $sql .= "regTime int(20) NOT NULL,";
-    $sql .= "PRIMARY KEY(memberID)";
-    $sql .= ") CHARSET=utf8";
+    $sql = "
+        CREATE TABLE boardMember(
+        memberID int(10) unsigned NOT NULL AUTO_INCREMENT,
+        youEmail varchar(40) UNIQUE NOT NULL,
+        youName varchar(10) NOT NULL,
+        youPass varchar(50) NOT NULL,
+        regTime int(20) NOT NULL,
+        PRIMARY KEY(memberID)
+        ) CHARSET=utf8
+    ";
     
+    // youPhone varchar(20) NOT NULL,
+
     $result = $connect -> query($sql);
 
     if ( $result ) {

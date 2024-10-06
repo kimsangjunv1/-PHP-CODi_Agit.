@@ -3,8 +3,245 @@ main {
     // 경로 : 홈 페이지
     &#home {
         .container-inner {
+            padding: 0;
+            gap: var(--section-space);
+
             > article {
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
                 width: 100%;
+
+                // 공통
+                > section {
+                    width: 100%;
+
+                    &.title-container {
+                        display: flex;
+                        justify-content: space-between;
+
+                        > h5 {
+                            font-size: 2.8rem;
+                        }
+
+                        > a {
+                            border: 1px solid var(--color-gray-50);
+                            border-radius: 100px;
+                            padding: 0.4rem 0.8rem;
+                            font-size: 1.2rem;
+                        }
+                    }
+
+                    &.contents {
+                        display: grid;
+                        grid-template-columns: repeat(5,1fr);
+                        grid-column-gap: 1.2rem;
+
+                        > .item {
+                            position: relative;
+                            display: flex;
+                            gap: 0.8rem;
+                            flex: 1;
+                            background: var(--color-gray-800);
+                            // box-shadow: 0px 30px 40px -20px var(--color-gray-400);
+                            overflow: hidden;
+                            border-radius: 0.8rem;
+
+                            > .thumbnail {
+                                position: relative;
+
+                                > img {
+                                    width: 100%;
+                                    -o-object-fit: cover;
+                                    object-fit: cover;
+                                    aspect-ratio: 1/.8;
+                                    mask-image: linear-gradient(to bottom,var(--color-gray-800),var(--color-gray-800) 12.5%,var(--color-gray-800) 57.5%,#0000);
+                                }
+
+                                > .desc {
+                                    position: absolute;
+                                    bottom: 0;
+                                    left: 0;
+                                    z-index: 1;
+                                }
+                            }
+
+                            > .desc {
+                                position: relative;
+                                padding: 1.2rem;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 0.8rem;
+                                z-index: 1;
+                                
+                                > div {
+                                    display: flex;
+                                    gap: 0.4rem;
+                                    width: fit-content;
+                                    border: 1px solid white;
+                                    padding: 0.4rem;
+
+                                    p {
+                                        font-size: 1.2rem;
+                                    }
+                                }
+
+                                > p {
+                                    overflow: hidden;
+                                    color: rgb(255 255 255 / 50%);
+                                    -webkit-line-clamp: 2;
+                                    -webkit-box-orient: vertical;
+                                    display: -webkit-box;
+                                }
+                                
+                                h5,
+                                p {
+                                    color: white;
+                                }
+                            }
+
+                            &.horizontal {
+                                flex-direction: row;
+                            }
+
+                            &.vertical {
+                                flex-direction: column;
+                            }
+
+                            &.empty {
+                                background: var(--color-red-50);
+                                color: var(--color-red-500);
+                            }
+
+                            &::after {
+                                content: "";
+                                height: .4rem;
+                                width: 1.8rem;
+                                position: absolute;
+                                top: 2rem;
+                                right: 1.2rem;
+                                rotate: -45deg;
+                                background: var(--color-gray-50);
+                                border-radius: 100px;
+                                mix-blend-mode: difference;
+                            }
+
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                top: 0%;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                background: linear-gradient(45deg, #1e2030, transparent);
+                                backdrop-filter: blur(20px);
+                                -webkit-backdrop-filter: blur(20px);
+                                mask-image: linear-gradient(to top, #000, #000 12.5%, #000 57.5%, rgba(0, 0, 0, 0));
+                                -webkit-mask-image: linear-gradient(to top, #000, #000 12.5%, #000 57.5%, rgba(0, 0, 0, 0));
+                                z-index: 1;
+                            }
+                        }
+                    }
+                }
+
+                // 섹션 : DEVLOG
+                &#all {
+                    > section {
+                        &.title-container {}
+
+                        &.contents {
+                        }
+                    }
+                }
+
+                &#showcase {
+                    padding-top: var(--header-height);
+                    overflow: hidden;
+                    position: relative;
+                    height: 100vh;
+                    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1) height;
+
+                    .item {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        transition: 0.25s opacity;
+                        opacity: 0;
+                        pointer-events: none;
+
+                        display: flex;
+                        align-items: center;
+
+                        &.view {
+                            pointer-events: auto;
+                            opacity: 1;
+
+                            > section {
+                                &.contents {
+                                    .progress {
+                                        height: 2px;
+                                        background: var(--color-brand-500);
+                                        animation: extendWidth 5s;
+                                        // animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+                                        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1);
+                                        animation-iteration-count: infinite;
+                                    }
+                                }
+
+                                &.thumbnail {
+                                }
+                            }
+                        }
+
+                        > section {
+                            &.thumbnail {
+                                position: absolute;
+                                top: 50%;
+                                right: 0%;
+                                transform: translate(-50%, -50%);
+
+                                figure {
+                                    position: absolute;
+
+                                    > img {
+                                        width: 700px;
+                                        box-sizing: border-box;
+                                        transform: translate(-50%,-50%);
+                                        top: 50%;
+                                        left: 50%;
+                                        position: absolute;
+                                        max-width: initial;
+                                        object-fit: cover;
+                                    }
+
+                                    &:nth-child(2) {
+                                        top: 60px;
+                                        right: 148px;
+                                        filter: blur(2px);
+                                    }
+
+                                    &:nth-child(3) {
+                                        top: 262px;
+                                        right: 700px;
+                                        filter: blur(4px);
+                                    }
+
+                                    &:nth-child(4) {
+                                        bottom: 136px;
+                                        right: 80px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.resize {
+                        height: calc(50vh - 128px);
+                    }
+                }
+
             }
         }
     }
@@ -12,8 +249,306 @@ main {
     // 경로 : 로그인 페이지
     &#login {
         .container-inner {
-            > article {
+            padding: 0 1.6rem;
+            justify-content: center;
+            
+            form {
                 width: 100%;
+
+                fieldset {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 3.2rem;
+        
+                    width: var(--mobile);
+                    background: white;
+                    padding: 3.0rem;
+                    border-radius: 1.6rem;
+
+                    margin: 0 auto;
+        
+                    > article {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1.6rem;
+        
+                        &.header {
+                            > a {
+                                img {
+                                    margin: 0 auto;
+                                    display: block;
+                                }
+                            }
+                        }
+                        
+                        &.main {
+                            display: flex;
+                            flex-direction: column;
+                        }
+        
+                        &.footer {
+                            .account {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                flex-direction: column;
+                                gap: 1.6rem;
+                                
+                                > a {
+                                    flex: 1;
+                                }
+        
+                                > div {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 0.8rem;
+        
+                                    > hr {
+                                        flex: 1;
+                                        background: var(--color-gray-50);
+                                        width: 11.0rem;
+                                    }
+        
+                                    > p {
+                                        color: var(--color-gray-500);
+                                        font-size: 1.2rem;
+                                    }
+                                }
+                            }
+        
+                            .help {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 0.8rem;
+
+                                > a {
+                                    font-size: 1.4rem;
+                                }
+
+                                > hr {
+                                    flex: 0 0 1px;
+                                    background: var(--color-gray-50);
+                                    height: 1.6rem;
+                                    margin: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // 경로 : 회원가입 페이지
+    &#join {
+        .container-inner {
+            padding: 0 1.6rem;
+            justify-content: center;
+            
+            .form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 3.2rem;
+    
+                width: var(--mobile);
+                background: white;
+                padding: 3.0rem;
+                border-radius: 1.6rem;
+
+                margin: 0 auto;
+
+                article {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.6rem;
+    
+                    &.header {
+                        > a {
+                            img {
+                                margin: 0 auto;
+                                display: block;
+                            }
+                        }
+                    }
+                    
+                    &.main {
+                        display: flex;
+                        flex-direction: column;
+                    }
+    
+                    &.footer {
+                        .account {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-direction: column;
+                            gap: 1.6rem;
+                            
+                            > a {
+                                flex: 1;
+                            }
+    
+                            > div {
+                                display: flex;
+                                align-items: center;
+                                gap: 0.8rem;
+    
+                                > hr {
+                                    flex: 1;
+                                    background: var(--color-gray-50);
+                                    width: 11.0rem;
+                                }
+    
+                                > p {
+                                    color: var(--color-gray-500);
+                                    font-size: 1.2rem;
+                                }
+                            }
+                        }
+    
+                        .help {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 0.8rem;
+
+                            > a {
+                                font-size: 1.4rem;
+                            }
+
+                            > hr {
+                                flex: 0 0 1px;
+                                background: var(--color-gray-50);
+                                height: 1.6rem;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // 경로 : DEVLOG 페이지
+    &#category {
+        .container-inner {
+            max-width: var(--pc);
+            display: grid;
+            grid-column-gap: 1.2rem;
+
+            display: grid;
+            display: -ms-grid;
+            grid-template-columns: 200px 1fr;
+            -ms-grid-columns: 200px 1fr;
+
+            > .menu {
+                height: 100%;
+                
+                > section {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.8rem;
+
+                    > h4 {
+                        font-size: 1.2rem;
+                        font-weight: 700;
+                    }
+                }
+
+            }
+
+            > .contents {
+                height: 100%;
+
+                > article {
+                    &#title {}
+    
+                    &#search {}
+    
+                    &#list {
+                        display: grid;
+                        grid-template-columns: repeat(3,1fr);
+                        gap: 8.0rem 4.0rem;
+        
+                        > .item {
+                            > .thumbnail {
+                                position: relative;
+        
+                                > img {
+                                    width: 100%;
+                                    -o-object-fit: cover;
+                                    object-fit: cover;
+                                    aspect-ratio: 1/0.6;
+                                    border-radius: 0.8rem;
+                                }
+                            }
+        
+                            &.horizontal {
+                                flex-direction: row;
+                            }
+        
+                            &.vertical {
+                                flex-direction: column;
+                            }
+        
+                            &.empty {
+                                background: var(--color-red-50);
+                                color: var(--color-red-500);
+                            }
+                        }
+                    }
+    
+                    &#pagination {}
+                }
+            }
+        }
+
+        // 게시물 보기 페이지
+        &.view {
+            .container-inner {
+                display: flex;
+                gap: 3.2rem;
+                max-width: var(--tablet);
+                // padding: 0 1.6rem;
+
+                > article {
+                    width: 100%;
+
+                    &.header {
+                        > img {
+                            width: 12.8rem;
+                            height: 12.8rem;
+                            object-fit: cover;
+                            border-radius: 1.6rem;
+                            margin-bottom: 1.6rem;
+                        }
+
+                        > div {
+                            > h2 {
+                                font-size: 3.2rem;
+                            }
+
+                            > div {
+                                display: flex;
+                                gap: 0.8rem;
+
+                                > p {
+                                    font-size: 1.4rem;
+                                    color: var(--color-gray-500);
+                                }
+                            }
+                        }
+                    }
+                    &.main {}
+                    &.footer {}
+                }
             }
         }
     }

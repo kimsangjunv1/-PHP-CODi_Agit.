@@ -9,7 +9,7 @@
 
 // vendors 라이브러리 및 프레임워크 관련 css 파일
 // @import "vendors/swiper";
-// @import "vendors/lenis";
+@import "vendors/lenis";
 
 // layout 사이트 구조
 @import "layout/header";
@@ -23,10 +23,11 @@
 // @import "components/marquee";
 // @import "components/mouse";
 // @import "components/popup";
+@import "components/common";
 @import "components/routes";
 @import "components/skip";
 // @import "components/progress";
 // @import "components/wave";
-// @import "components/animation";
+@import "components/animation";
 // @import "components/sections";
 // @import "components/loading";

@@ -1,33 +1,26 @@
 <article id="all">
     <section class="title-container">
-        <h5>게시판 소식</h5>
-        <a href="../board/board.php"><span>더보기</span></a>
+        <h5>최근 올라온 게시물</h5>
+        <a href="/category?type=">더보기</a>
     </section>
 
     <section class="contents">
-        <?php
-            // 두개의 테이블 join
-            $sql = "SELECT b.postID, b.postTitle, m.youName, b.regTime, b.postView 
-                    FROM boardDevlog b 
-                    JOIN classMember m ON (b.memberID = m.memberID) 
-                    ORDER BY postID DESC 
-                    LIMIT 5";
+        <!-- 게시물 컴포넌트 -->
+        <?php 
+            // 필요한 데이터를 정의
+            $isSearch = false;          // 찾기를 위한 컴포넌트인지
+            $isVertical = true;         // 내용 표시 방향
+            $limit = 5;                 // 찾을 갯수 제한
+            $postQuery = "
+                SELECT b.postID, b.postTitle, b.postContents, b.postCategory, m.youName, b.regTime, b.postView, b.postLike, b.postImgFileUrl
+                FROM boardPost b
+                JOIN boardMember m
+                ON (b.memberID = m.memberID)
+                ORDER BY postID DESC
+            ";
 
-            $result = $connect->query($sql);
-
-            if ($result && $result->num_rows > 0) {
-                while ($info = $result->fetch_array(MYSQLI_ASSOC)) {
-                    echo "<div class='item'>"; // 수정: backticks 대신 single quotes 사용
-                    echo "<p>{$info['postID']}</p>";
-                    echo "<p><a href='../board/postView.php?postID={$info['postID']}'>{$info['postTitle']}</a></p>"; // 수정: 태그 닫기 수정
-                    echo "<p>{$info['youName']}</p>";
-                    echo "<p>" . date('Y-m-d', $info['regTime']) . "</p>";
-                    echo "<p>{$info['postView']}</p>";
-                    echo "</div>";
-                }
-            } else {
-                echo "<p>게시글이 없습니다.</p>"; // 테이블 구조 대신 일반 문장으로 출력
-            }
+            include $rootPath . "/src/components/common/component_post.php";
         ?>
+        <!-- 게시물 컴포넌트 END -->
     </section>
 </article>

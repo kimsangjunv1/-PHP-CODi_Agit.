@@ -1,11 +1,6 @@
 RewriteEngine On
 
-# .php 파일을 생략할 수 있도록 설정
+# .php 파일을 생략할 수 있도록 리라이트 설정
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
-# "home/"으로 끝날 경우, "home/index.php"로 리라이트
-RewriteRule ^([a-zA-Z0-9_/]+)/?$ src/routes/$1/index.php [L]
-
-# 일반적인 요청을 src/routes 경로로 리라이트
-RewriteRule ^([a-zA-Z0-9_/]+)$ src/routes/$1.php [L]
+RewriteRule ^([a-zA-Z0-9_/]+)$ $1.php [L]
