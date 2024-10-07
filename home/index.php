@@ -21,38 +21,27 @@
     </head>
     
     <body>
-        <!-- skip -->
-        <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
-        <!-- skip END -->
-
-        <!-- header -->
         <?php include $rootPath . "/src/components/layout/header.php"; ?>
-        <!-- header END -->
-        
-        <!-- main -->
+
         <main id="home">
             <section class="container-inner">
                 <?php include $rootPath . "/src/components/routes/home/section_post_showcase.php"; ?>
-
-                <!-- 모든 -->
                 <?php include $rootPath . "/src/components/routes/home/section_post_all.php"; ?>
-
-                
-                <!-- 게시물 컴포넌트 -->
+                <?php include $rootPath . "/src/components/routes/home/section_post_tab.php"; ?>
                 <?php include $rootPath . "/src/components/routes/home/section_post_specific.php"; ?>
-                <!-- 모든 END -->
+
+                <?php include $rootPath . "/src/components/common/component_search.php"; ?>
+                <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
             </section>    
         </main>
-        <!-- main END -->
-
-        <!-- footer -->
+        
         <?php include $rootPath . "/src/components/layout/footer.php"?>
-        <!-- footer END -->
 
         <script type="module" defer>
             import { pageController } from "/src/assets/js/pageController.js";
 
             pageController.home.showcase();
+            pageController.home.specific();
         </script>
     </body>
 </html>

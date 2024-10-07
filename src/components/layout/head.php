@@ -10,10 +10,10 @@
 
 <!-- 반응형 -->
 <meta content="yes" name="apple-mobile-web-app-capable" />
-<meta name="author" content="CODi">
+<!-- <meta name="author" content="CODi"> -->
 <meta name="description" content="<?php echo $seo["description"]; ?>">
-<meta name="keyword" content="개발, 웹, 블로그, 김상준, 웹 프론트엔드, 2024">
-<meta name="robots" content="all">
+<!-- <meta name="keyword" content="개발, 웹, 블로그, 김상준, 웹 프론트엔드, 2024">
+<meta name="robots" content="all"> -->
 
 <!-- CSS -->
 <link rel="stylesheet" href="/src/assets/css/index.min.css">
@@ -26,5 +26,6 @@
 
     // pageController.common.setScrollSmoother();
     pageController.common.setResizeElementOnScroll();
+    pageController.layout.showSearchContainer();
     pageController.layout.setCurrentProgressBar();
 </script>

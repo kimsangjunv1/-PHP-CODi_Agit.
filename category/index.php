@@ -38,122 +38,19 @@
     </head>
 
     <body>
-        <!-- 스킵 -->
-        <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
-        <!-- 스킵 END -->
-
-        <!-- 헤더 -->
         <?php include $rootPath . "/src/components/layout/header.php"; ?>
-        <!-- 헤더 END -->
 
-        <!-- 메인 -->
         <main id="category">
             <section class="container-inner">
-                <aside class="menu">
-                    <div class="item">
-                        <img src="/" alt="전체보기">
-                        <a href="/category?type=">전체보기</a>
-                    </div>
-                    
-                    <section>
-                        <h4>Library</h4>
-
-                        <div class="item">
-                            <img src="/" alt="스와이퍼">
-                            <a href="/category?type=programmers">Swiper</a>
-                        </div>
-
-                        <div class="item">
-                            <img src="/" alt="MatterJS">
-                            <a href="/category?type=matterjs">MatterJS</a>
-                        </div>
-
-                        <div class="item">
-                            <img src="/" alt="Framer-Motion">
-                            <a href="/category?type=framermotion">Framer-Motion</a>
-                        </div>
-                    </section>
-                    
-                    <section>
-                        <h4>Framework</h4>
-                        
-                        <div>
-                            <img src="/" alt="아이콘">
-                            <a href="/category?type=programmers">Svelte</a>
-                        </div>
-                        <div>
-                            <img src="/" alt="아이콘">
-                            <a href="/category?type=programmers">React</a>
-                        </div>
-                    </section>
-
-                    <section>
-                        <h4>Backend</h4>
-                        
-                        <div>
-                            <img src="/" alt="아이콘">
-                            <a href="/category?type=php">php</a>
-                        </div>
-                        <div>
-                            <img src="/" alt="아이콘">
-                            <a href="/category?type=mongodb">MongoDB</a>
-                        </div>
-                    </section>
-
-                    <section>
-                        <h4>개인 공부</h4>
-                        
-                        <div class="<?= $selectedType == 'programmers' ? 'active' : '' ?>">
-                            <img src="/" alt="아이콘">
-                            <a href="/category?type=programmers">프로그래머스</a>
-                        </div>
-
-                        <div class="<?= $selectedType == 'tip' ? 'active' : '' ?>">
-                            <img src="/" alt="아이콘">
-                            <a href="/category?type=tip">팁</a>
-                        </div>
-                    </section>
-                </aside>
+                <?php include $rootPath . "/src/components/routes/category/section_post_tab.php"; ?>
 
                 <div class="contents">
-                    <!-- 게시판 타이틀 -->
-                    <article id="title">
-                        <h2>
-                            <?php
-                                echo $selectedType ? $selectedType : "모든 게시물";
-                            ?>
-                        </h2>
-                        <p>개발일지를 올리는 곳입니다.</p>
-                    </article>
-                    <!-- 게시판 타이틀 END -->
-    
-                    <!-- 검색 컴포넌트 -->
-                    <?php 
-                        // 필요한 데이터를 정의
-                        $isSearch = false;
-                        $tableName = "boardPost";
-                        $currentPath = "category";  // 검색 처리할 경로
-                        $placeholder = "검색어를 입력하세요";
-                        $title = "검색";
-                        $select = [
-                            ["title" => "title", "desc" => "제목"],
-                            ["title" => "content", "desc" => "내용"],
-                            ["title" => "author", "desc" => "작성자"]
-                        ];
-                        $postQuery = "
-                            SELECT count(postID) AS totalPosts FROM boardPost
-                            ORDER BY postID DESC
-                        ";
-    
-                        include $rootPath . "/src/components/common/component_search.php";
-                    ?>
-                    <!-- 검색 컴포넌트 END -->
-    
                     <!-- 게시물 컴포넌트 -->
                     <article id="list">
                         <?php 
                             // 필요한 데이터를 정의
                             $isVertical = true;
+                            $isNeedDate = true;
                             
                             if ($selectedType) {
                                 $postQuery = "
@@ -171,7 +68,7 @@
                                     JOIN boardMember m
                                     ON (b.memberID = m.memberID)
                                     ORDER BY postID DESC
-                                ";                                
+                                ";          
                             }
         
                             include $rootPath . "/src/components/common/component_post.php";
@@ -182,18 +79,25 @@
                     <!-- 페이지네이션 컴포넌트 -->
                     <?php 
                         // 필요한 데이터를 정의
-                        $pathName = "devlog";
+                        $pathName = "category";
     
                         include $rootPath . "/src/components/common/component_pagination.php";
                     ?>
                     <!-- 페이지네이션 컴포넌트 END -->
+
+                    <?php
+                        $currentPath = "category";
+
+                        if (isset($_SESSION['memberID'])) {
+                            echo "<a href='/{$currentPath}/write' class='button border lg'>글쓰기</a>";
+                        };
+                    ?>
                 </div>
+
+                <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
             </section>
         </main>
-        <!-- 메인 END -->
-
-        <!-- 푸터 -->
+        
         <?php include $rootPath . "/src/components/layout/footer.php"?>
-        <!-- 푸터 END -->
     </body>
 </html>

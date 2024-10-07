@@ -1,10 +1,4 @@
 <?php
-    // SEO
-    $seo = [
-        'title' => '카테고리',
-        'description' => '오류해결과 관련된 팁들을 모아놨어요!',
-    ];
-
     // 최상위 경로
     $rootPath = $_SERVER['DOCUMENT_ROOT'];
 
@@ -17,6 +11,7 @@
     $postContents = $connect -> real_escape_string($_POST['postContents']);
     $memberID = $_SESSION['memberID'];
     $postID = $_POST['postID'];
+    $postCategory = $_POST['postCategory'];
     $youPass = sha1($_POST['youPass']);
 
     $sql = "SELECT youPass, memberID FROM boardMember WHERE memberID = {$memberID}";
@@ -26,7 +21,7 @@
 
     if ($memberInfo['youPass'] === $youPass && $memberInfo['memberID'] === $memberID) {
         $sql = "
-            UPDATE boardPost SET postTitle = '{$postTitle}', postContents = '{$postContents}'
+            UPDATE boardPost SET postTitle = '{$postTitle}', postContents = '{$postContents}', postCategory = '{$postCategory}'
             WHERE postID = '{$postID}'
         ";
         $connect -> query($sql);

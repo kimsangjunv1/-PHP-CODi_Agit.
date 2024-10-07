@@ -14,7 +14,7 @@
                 <section>
                     <a href="/home">홈</a>
                     <a href="/category?type=">카테고리</a>
-                    <a href="/category?type=">검색</a>
+                    <button type="button" class="btn-search-control" value=1>검색</button>
                 </section>
     
                 <section class="info">

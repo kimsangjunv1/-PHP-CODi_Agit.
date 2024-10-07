@@ -40,13 +40,13 @@
                                 <div>
                                     <p>NEW</p>
                                     <div>
-                                        <p class='currentSlide'>1</p>
+                                        <p class='currentSlide'>{$i}</p>
                                         <p>{$count}</p>
                                     </div>
                                 </div>
                                 <div class='progress'></div>
                                 <h5>{$info['postTitle']}</h5>
-                                <p>{$info['postContents']}</p>
+                                <p>".strip_tags($info['postContents'])."</p>
                             </section>
                             <section class='thumbnail'>
                     ";

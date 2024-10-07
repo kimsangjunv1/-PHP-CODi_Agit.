@@ -2,7 +2,7 @@
     header('Content-Type: application/json'); // JSON 응답을 위해 Content-Type 설정
 
     // 이미지 업로드 처리
-    $imgInfo = $_FILES['imgFile']; // Toast UI Editor에서 보내는 파일 이름과 맞춰야 함
+    $imgInfo = $_FILES['imgFile'];
     $imgSize = $imgInfo['size'];
     $imgType = $imgInfo['type'];
     $imgName = $imgInfo['name'];

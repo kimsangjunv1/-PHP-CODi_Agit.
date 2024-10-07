@@ -4,21 +4,25 @@
     --main-text-color: #000000;
 
     // 색상 : 브랜드
-    --color-brand-900: #1b1b6f;
-    --color-brand-500: #3b3ad1;
+    --color-brand-900: #870e35;
+    --color-brand-500: #ff3c7a;
     --color-brand-50: #d9d9ec;
 
+    // --color-brand-900: #1b1b6f;
+    // --color-brand-500: #3b3ad1;
+    // --color-brand-50: #d9d9ec;
+
     // 색상 : 그레이
-    --color-gray-900: #000000;
-    --color-gray-800: #1D2030;
-    --color-gray-700: #41455D;
-    --color-gray-600: #5A6079;
-    --color-gray-500: #7D829A;
-    --color-gray-400: #9FA4BC;
-    --color-gray-300: #B8BCD3;
-    --color-gray-200: #CCD1E1;
-    --color-gray-100: #E1E4EE;
-    --color-gray-50: #F0F1F6;
+    --color-gray-900: #191f28;
+    --color-gray-800: #333d4b;
+    --color-gray-700: #4e5968;
+    --color-gray-600: #6b7684;
+    --color-gray-500: #8b95a1;
+    --color-gray-400: #b0b8c1;
+    --color-gray-300: #d1d6db;
+    --color-gray-200: #e5e8eb;
+    --color-gray-100: #f2f4f6;
+    --color-gray-50: #f9fafb;
 
     // 색상 : 동의
     --color-green-900: #007204;
@@ -59,7 +63,7 @@
     --button-lg-padding: 1.2rem 1.8rem;
 
     // 반응형 사이즈
-    --pc: 1440px;
+    --pc: 1140px;
     --tablet: 1024px;
     --mobile: 376px;
 }

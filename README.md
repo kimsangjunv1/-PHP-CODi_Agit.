@@ -5,8 +5,9 @@
 ```
 PHP
 SCSS
-Toast UI Editor
 Parsedown
+Sun Editor
+Toast UI Editor (사용중단)
 
 ```
 

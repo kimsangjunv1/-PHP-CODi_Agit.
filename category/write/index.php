@@ -18,7 +18,21 @@
     <head>
         <?php include $rootPath . "/src/components/layout/head.php"; ?>
 
-        <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+        <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css" rel="stylesheet">
+        <!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor.css" rel="stylesheet"> -->
+        <!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor-contents.css" rel="stylesheet"> -->
+        <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
+        <!-- languages (Basic Language: English/en) -->
+        <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
+
+        <!-- https://github.com/codemirror/CodeMirror -->
+        <!-- codeMirror (^5.0.0) -->
+        <!-- Use version 5.x.x -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.49.0/lib/codemirror.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/codemirror@5.49.0/lib/codemirror.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/codemirror@5.49.0/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/codemirror@5.49.0/mode/xml/xml.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/codemirror@5.49.0/mode/css/css.js"></script>
     </head>
     <body>
         <!-- 스킵 -->
@@ -30,13 +44,8 @@
         <!-- 헤더 END -->
         
         <!-- 메인 -->
-        <main id="devlog" class="write">
+        <main id="category" class="write">
             <section class="container-inner">
-                <article>
-                    <h2>게시물 작성</h2>
-                    <p>게시물 작성을 위한 섹션입니다.</p>
-                </article>
-
                 <article>
                     <form 
                         id="form"
@@ -48,34 +57,32 @@
                             <legend class="blind">게시판 작성 영역</legend>
 
                             <section>
-                                <label for="postTitle">제목</label>
-                                <input type="text" name="postTitle" id="postTitle">
+                                <label for="postTitle" class="blind">제목</label>
+                                <input type="text" name="postTitle" placeholder="제목을 입력해주세요." id="postTitle" class="input border">
                             </section>
 
                             <section>
-                                <label for="postCategory">카테고리</label>
-                                <select name="postCategory" id="postCategory">
+                                <label for="postCategory" class="blind">카테고리</label>
+                                <select name="postCategory" id="postCategory" class="input border">
                                     <option value="programmers" default>프로그래머스</option>
                                     <option value="tip">팁</option>
                                     <option value="js">자바스크립트</option>
-                                </select>`
+                                </select>
                             </section>
                             
                             <section>
-                                <label for="postThumbnail">썸네일</label>
-                                <input type="file" accept="image/*">
+                                <label for="postThumbnail" class="blind">썸네일</label>
+                                <input type="file" accept="image/*" class="button border lg">
                                 <input type="hidden" name="postImgFileUrl" id="postImgFileUrl" value="">
                             </section>
 
                             <section>
-                                <label for="postContents">내용</label>
-                                <textarea name="postContents" id="postContents" style="display:none;"></textarea>
-                                <!-- <input type="hidden" name="postImgFileUrl" id="postImgFileUrl" value=""> -->
-                                <div id="editor"></div>
+                                <label for="postContents" class="blind">내용</label>
+                                <textarea name="postContents" id="postContents">내용을 입력해주세요.</textarea>
                             </section>
                             
                             <section>
-                                <button type="submit">저장하기</button>
+                                <button type="submit" class="button black lg">저장하기</button>
                             </section>
                         </fieldset>
                     </form>
@@ -89,7 +96,6 @@
         <!-- 푸터 END -->
 
         <!-- 스크립트 -->
-        <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
         <script type="module" defer>
             import { pageController } from "/src/assets/js/pageController.js"; // 경로를 확인하세요
 
@@ -105,8 +111,7 @@
                 }
             });
 
-            pageController.devlog.write();  // devlog 함수 추출
-            pageController.common.sendFormContents();  // devlog 함수 추출
+            pageController.category.writeNew();
         </script>
         <!-- 스크립트 -->
     </body>

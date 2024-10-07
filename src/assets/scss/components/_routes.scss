@@ -4,7 +4,7 @@ main {
     &#home {
         .container-inner {
             padding: 0;
-            gap: var(--section-space);
+            gap: 3.2rem;
 
             > article {
                 display: flex;
@@ -34,69 +34,45 @@ main {
 
                     &.contents {
                         display: grid;
-                        grid-template-columns: repeat(5,1fr);
-                        grid-column-gap: 1.2rem;
+                        grid-column-gap: 4.0rem;
 
                         > .item {
                             position: relative;
                             display: flex;
                             gap: 0.8rem;
                             flex: 1;
-                            background: var(--color-gray-800);
-                            // box-shadow: 0px 30px 40px -20px var(--color-gray-400);
                             overflow: hidden;
-                            border-radius: 0.8rem;
 
-                            > .thumbnail {
-                                position: relative;
-
-                                > img {
-                                    width: 100%;
-                                    -o-object-fit: cover;
-                                    object-fit: cover;
-                                    aspect-ratio: 1/.8;
-                                    mask-image: linear-gradient(to bottom,var(--color-gray-800),var(--color-gray-800) 12.5%,var(--color-gray-800) 57.5%,#0000);
-                                }
-
-                                > .desc {
-                                    position: absolute;
-                                    bottom: 0;
-                                    left: 0;
-                                    z-index: 1;
-                                }
+                            > img {
+                                width: 100%;
+                                -o-object-fit: cover;
+                                object-fit: cover;
+                                aspect-ratio: 1/.8;
+                                border-radius: 1.6rem;
                             }
 
                             > .desc {
                                 position: relative;
-                                padding: 1.2rem;
+                                // padding: 1.2rem;
                                 display: flex;
                                 flex-direction: column;
                                 gap: 0.8rem;
                                 z-index: 1;
                                 
-                                > div {
-                                    display: flex;
-                                    gap: 0.4rem;
-                                    width: fit-content;
-                                    border: 1px solid white;
-                                    padding: 0.4rem;
-
-                                    p {
-                                        font-size: 1.2rem;
-                                    }
+                                > .date {
+                                    font-size: 1.2rem;
                                 }
 
-                                > p {
+                                > .title {
+                                    font-size: 2.4rem;
+                                }
+
+                                > .preview {
                                     overflow: hidden;
-                                    color: rgb(255 255 255 / 50%);
+                                    color: rgba(0, 0, 0, 0.5);
                                     -webkit-line-clamp: 2;
                                     -webkit-box-orient: vertical;
                                     display: -webkit-box;
-                                }
-                                
-                                h5,
-                                p {
-                                    color: white;
                                 }
                             }
 
@@ -115,7 +91,7 @@ main {
 
                             &::after {
                                 content: "";
-                                height: .4rem;
+                                height: 0.4rem;
                                 width: 1.8rem;
                                 position: absolute;
                                 top: 2rem;
@@ -125,41 +101,16 @@ main {
                                 border-radius: 100px;
                                 mix-blend-mode: difference;
                             }
-
-                            &::before {
-                                content: "";
-                                position: absolute;
-                                top: 0%;
-                                left: 0;
-                                width: 100%;
-                                height: 100%;
-                                background: linear-gradient(45deg, #1e2030, transparent);
-                                backdrop-filter: blur(20px);
-                                -webkit-backdrop-filter: blur(20px);
-                                mask-image: linear-gradient(to top, #000, #000 12.5%, #000 57.5%, rgba(0, 0, 0, 0));
-                                -webkit-mask-image: linear-gradient(to top, #000, #000 12.5%, #000 57.5%, rgba(0, 0, 0, 0));
-                                z-index: 1;
-                            }
-                        }
-                    }
-                }
-
-                // 섹션 : DEVLOG
-                &#all {
-                    > section {
-                        &.title-container {}
-
-                        &.contents {
                         }
                     }
                 }
 
                 &#showcase {
-                    padding-top: var(--header-height);
                     overflow: hidden;
                     position: relative;
                     height: 100vh;
-                    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1) height;
+                    padding-top: var(--header-height);
+                    transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) height;
 
                     .item {
                         position: absolute;
@@ -196,11 +147,25 @@ main {
                         }
 
                         > section {
+                            &.contents {
+                                height: 100%;
+                                width: 50%;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: flex-start;
+                                justify-content: center;
+                                backdrop-filter: blur(20px);
+                                -webkit-backdrop-filter: blur(20px);
+                                -webkit-mask-image: linear-gradient(to right,#000,#000 12.5%,#000 57.5%,#0000);
+                                mask-image: linear-gradient(to right,#000,#000 12.5%,#000 57.5%,#0000);
+
+                                > p {
+                                    width: 100%;
+                                }
+                            }
+
                             &.thumbnail {
-                                position: absolute;
-                                top: 50%;
-                                right: 0%;
-                                transform: translate(-50%, -50%);
+                                z-index: -1;
 
                                 figure {
                                     position: absolute;
@@ -214,6 +179,7 @@ main {
                                         position: absolute;
                                         max-width: initial;
                                         object-fit: cover;
+                                        border-radius: 5.2rem;
                                     }
 
                                     &:nth-child(2) {
@@ -240,6 +206,90 @@ main {
                     &.resize {
                         height: calc(50vh - 128px);
                     }
+
+                    &::after {
+                        content: '';
+                        background: linear-gradient(0deg, white, transparent);
+                        width: 100%;
+                        height: var(--header-height);
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                    }
+                }
+
+                // 섹션 : category
+                &#all {
+                    > section {
+                        &.title-container {}
+
+                        &.contents {
+                            grid-template-columns: repeat(3, 1fr);
+                        }
+                    }
+                }
+
+                &#tab {
+                    flex-direction: row;
+                    margin-top: 4.0rem;
+                    gap: 2.0rem;
+
+                    > button {
+                        font-size: 3.2rem;
+                        font-weight: 700;
+                        color: var(--color-gray-400);
+
+                        &.active {
+                            color: var(--color-gray-800);
+                        }
+                    }
+                }
+
+                &.specific {
+                    > section {
+                        &.title-container {}
+
+                        &.contents {
+                            grid-template-columns: repeat(1, 1fr);
+                            grid-row-gap: 4.0rem;
+
+                            > .item {
+                                flex-direction: row-reverse;
+                                
+                                > img {
+                                    width: calc(100vw / 5 - 1.2rem);
+                                }
+
+                                > .desc {
+                                    flex: 1;
+                                    justify-content: center;
+                                    width: calc(80vw - 1.2rem);
+
+                                    > h5 {
+                                        font-size: 2.4rem;
+                                    }
+
+                                    > p {
+                                        overflow: hidden;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 2;
+                                        -webkit-box-orient: vertical;
+                                        color: var(--color-gray-500);
+                                        line-height: 1.5;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+
+                &.view {
+                    display: auto;
+                }
+
+                &.none {
+                    display: none;
                 }
 
             }
@@ -436,29 +486,23 @@ main {
         }
     }
 
-    // 경로 : DEVLOG 페이지
+    // 경로 : category 페이지
     &#category {
         .container-inner {
-            max-width: var(--pc);
-            display: grid;
-            grid-column-gap: 1.2rem;
-
-            display: grid;
-            display: -ms-grid;
-            grid-template-columns: 200px 1fr;
-            -ms-grid-columns: 200px 1fr;
-
-            > .menu {
-                height: 100%;
+            > #tab {
+                display: flex;
+                flex-direction: row;
+                margin-top: 4rem;
+                gap: 2rem;
+                width: 100%;
                 
-                > section {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0.8rem;
+                > a {
+                    font-size: 3.2rem;
+                    font-weight: 700;
+                    color: var(--color-gray-400);
 
-                    > h4 {
-                        font-size: 1.2rem;
-                        font-weight: 700;
+                    &.active {
+                        color: var(--color-gray-800);
                     }
                 }
 
@@ -478,15 +522,29 @@ main {
                         gap: 8.0rem 4.0rem;
         
                         > .item {
-                            > .thumbnail {
-                                position: relative;
-        
-                                > img {
-                                    width: 100%;
-                                    -o-object-fit: cover;
-                                    object-fit: cover;
-                                    aspect-ratio: 1/0.6;
-                                    border-radius: 0.8rem;
+                            position: relative;
+    
+                            > img {
+                                width: 100%;
+                                -o-object-fit: cover;
+                                object-fit: cover;
+                                aspect-ratio: 1/0.6;
+                                border-radius: 0.8rem;
+                            }
+
+                            > .desc {
+                                .date,
+                                .category {
+                                    color: var(--color-gray-500);
+                                }
+                                
+                                .title {
+                                    font-size: 2.4rem;
+                                    overflow: hidden;
+                                    -webkit-line-clamp: 2;
+                                    -webkit-box-orient: vertical;
+                                    display: -webkit-box;
+                                    color: var(--color-gray-800);
                                 }
                             }
         
@@ -515,39 +573,114 @@ main {
             .container-inner {
                 display: flex;
                 gap: 3.2rem;
-                max-width: var(--tablet);
-                // padding: 0 1.6rem;
+                padding: 0;
+                max-width: none;
 
                 > article {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
                     width: 100%;
 
                     &.header {
+                        position: relative;
+                        height: calc(100vh - var(--header-height));
+                        transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) height;
+
                         > img {
-                            width: 12.8rem;
-                            height: 12.8rem;
+                            width: 100%;
+                            height: 100%;
                             object-fit: cover;
-                            border-radius: 1.6rem;
-                            margin-bottom: 1.6rem;
+                            // border-radius: 1.6rem;
                         }
 
                         > div {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            height: 100%;
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: flex-end;
+                            padding-bottom: var(--header-height);
+                            background: radial-gradient(transparent 30%, #00000075);
+
+                            h2,
+                            p {
+                                color: white;
+                                text-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                            }
+
                             > h2 {
-                                font-size: 3.2rem;
+                                font-size: 5.6rem;
+                                text-align: center;
+                                max-width: var(--pc);
                             }
 
                             > div {
                                 display: flex;
+                                justify-content: center;
                                 gap: 0.8rem;
 
                                 > p {
                                     font-size: 1.4rem;
-                                    color: var(--color-gray-500);
+                                    filter: opacity(0.5);
+                                }
+                            }
+                        }
+
+                        &.resize {
+                            height: calc(50vh - 128px);
+                        }
+                    }
+
+                    &.main {
+                        max-width: var(--tablet);
+
+                        > div {
+                            figure {
+                                img {
+                                    border-radius: 1.6rem;
+                                    margin: 1.6rem 0;
                                 }
                             }
                         }
                     }
-                    &.main {}
-                    &.footer {}
+
+                    &.footer {
+                        > section {
+                            &:first-child {}
+                            &:last-child {
+                                display: flex;
+                                gap: 0.8rem;
+                                
+                                > a {
+                                    display: block;
+                                    width: 100px;
+                                    height: 100px;
+                                    border-radius: 100%;
+                                    text-decoration: none;
+                                    background: var(--color-gray-50);
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.write {
+            .container-inner {
+                display: flex;
+
+                > article {
+                    width: 100%;
                 }
             }
         }

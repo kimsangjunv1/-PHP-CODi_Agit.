@@ -23,7 +23,7 @@
     $connect -> query($sql);
 
     $sql = "
-        SELECT b.postTitle, m.youName, b.regTime, b.postView, b.postLike, b.postContents, b.postImgFileUrl
+        SELECT b.postTitle, m.youName, b.regTime, b.postView, b.postLike, b.postContents, b.postCategory, b.postImgFileUrl
         FROM boardPost b
         JOIN boardMember m
         ON(m.memberID = b.memberID)
@@ -47,7 +47,7 @@
 <html lang="ko">
     <head>
         <?php include $rootPath . "/src/components/layout/head.php"; ?>
-        <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+        <!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css" rel="stylesheet"> -->
     </head>
     
     <body>
@@ -72,6 +72,7 @@
 
                                 <div>
                                     <p class='author'>".$info['youName']."</p>
+                                    <p>•</p>
                                     <p class='date'>".date('Y-m-d H:i', $info['regTime'])."</p>
                                 </div>
                             </div>
@@ -79,7 +80,7 @@
                     ?>
                 </article>
 
-                <article class='main toastui-editor-contents'>
+                <article class="main">
                     <?php echo $formattedContents; ?>
                 </article>
 
@@ -97,11 +98,14 @@
                             echo "
                                 <a href='/category/modify?postID={$postID}'>수정하기</a>
                                 <a href='/category/modify/remove?postID={$postID}'>삭제하기</a>
-                                <a href='/category'>목록보기</a>
+                                <a href='/category/?type={$info['postCategory']}'>목록보기</a>
                             ";
                         ?>
                     </section>
                 </article>
+
+                <!-- 추천 포스트 -->
+                <!-- 추천 포스트 END -->
             </section>
         </main>
         <!-- 메인 END -->
@@ -110,4 +114,9 @@
         <?php include $rootPath . "/src/components/layout/footer.php"?>
         <!-- 푸터 END -->
     </body>
+
+    <script>
+        const test = document.querySelector("#header");
+        test.classList.add("transparent");
+    </script>
 </html>

@@ -1,5 +1,8 @@
 <!-- 필요한것 -->
 <!-- 테이블 명 : tableName -->
+ <?php 
+    $searchType = $_GET['type'];
+ ?>
 
 <article id="pagination">
     <ul>
@@ -23,26 +26,29 @@
             $endPage = min( $totalPages, $page + $pageCurrent );
 
             // 이전 페이지, 처음 페이지
+            // <li><a href='/" . $pathName . $search . "?page=1{$searchType}'>&lt;&lt;</a></li>
             if ( $page > 1 ) {
                 echo "
-                    <li><a href='/" . $pathName . $search . "?page=1{$searchType}'>&lt;&lt;</a></li>
-                    <li><a href='/" . $pathName . $search . "?page=" . ($page - 1) . "{$searchType}'>&lt;</a></li>
+                    <li><a href='/search/?page=" . ($page - 1) . "{$searchType}'>&lt;</a></li>
                 ";
             }
 
             // 페이지 넘버 표시
             for ( $i = $startPage; $i <= $endPage; $i++ ) {
                 $active = ($i == $page) ? "active" : ""; // 활성화 클래스 설정
-                echo "<li class='{$active}'><a href='/" . $pathName . $search . "?page={$i}{$searchType}'>{$i}</a></li>";
+
+                echo "
+                    <li class='{$active}'><a href='/search/?page={$i}{$searchType}'>{$i}</a></li>
+                ";
             }
             
             // 다음 페이지, 마지막 페이지
             if ( $page < $totalPages ) {
                 echo "
-                    <li><a href='/" . $pathName . $search . "?page=" . ($page + 1) . "{$searchType}'>&gt;</a></li>
-                    <li><a href='/" . $pathName . $search . "?page={$totalPages}{$searchType}'>&gt;&gt;</a></li>
+                    <li><a href='/search/?page=" . ($page + 1) . "{$searchType}'>&gt;</a></li>
                 ";
             }
+            // <li><a href='/" . $pathName . $search . "?page={$totalPages}{$searchType}'>&gt;&gt;</a></li>
         ?>
     </ul>
 </article>

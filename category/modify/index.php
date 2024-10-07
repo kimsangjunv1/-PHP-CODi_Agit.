@@ -15,12 +15,10 @@
 
     $postID = $_GET['postID'];
 
-    $sql = "SELECT postID, postTitle, postContents FROM boardPost WHERE postID = {$postID}";
+    $sql = "SELECT postID, postTitle, postContents, postCategory FROM boardPost WHERE postID = {$postID}";
     $result = $connect -> query($sql);
 
-    if (isset($result)) {
-        $info = $result -> fetch_array(MYSQLI_ASSOC);
-    }
+    isset($result) && $info = $result -> fetch_array(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +26,21 @@
     <head>
         <?php include $rootPath . "/src/components/layout/head.php"; ?>
 
-        <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+        <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css" rel="stylesheet">
+        <!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor.css" rel="stylesheet"> -->
+        <!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor-contents.css" rel="stylesheet"> -->
+        <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
+        <!-- languages (Basic Language: English/en) -->
+        <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
+
+        <!-- https://github.com/codemirror/CodeMirror -->
+        <!-- codeMirror (^5.0.0) -->
+        <!-- Use version 5.x.x -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.49.0/lib/codemirror.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/codemirror@5.49.0/lib/codemirror.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/codemirror@5.49.0/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/codemirror@5.49.0/mode/xml/xml.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/codemirror@5.49.0/mode/css/css.js"></script>
     </head>
 
     <body>
@@ -41,7 +53,7 @@
         <!-- 헤더 END -->
         
         <!-- 메인 -->
-        <main id="devlog" class="modify">
+        <main id="category" class="modify">
             <section class="container-inner">
                 <article>
                     <form
@@ -54,6 +66,15 @@
                         <fieldset>
                             <legend class="blind">게시판 수정 영역</legend>
                             <?php echo "<input type='hidden' name='postID' id='postID' value='".$info['postID']."' />"; ?>
+
+                            <section>
+                                <label for="postCategory" class="blind">카테고리</label>
+                                <select name="postCategory" id="postCategory" class="input border">
+                                    <option value="programmers" <? echo $info['postCategory'] == 'programmers' ? "selected" : '' ?> >프로그래머스</option>
+                                    <option value="tip" <?php echo $info['postCategory'] == 'tip' ? 'selected' : '' ?> >팁</option>
+                                    <option value="js" <?php echo $info['postCategory'] == 'js' ? 'selected' : '' ?> >자바스크립트</option>
+                                </select>
+                            </section>
 
                             <section>
                                 <label for="postTitle" class="label">제목</label>
@@ -83,15 +104,14 @@
         <!-- 푸터 END -->
 
         <!-- 스크립트 -->
-        <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js" defer></script>
         <script type="module" defer>
             import { pageController } from '/src/assets/js/pageController.js'; // 경로를 확인하세요
 
             let valueContents = document.querySelector("#postContents").value;
-            console.log("잔딜 받은 내용 : ", valueContents.replace(/<br\s*\/?>/gi, '\n'))
+            console.log("잔딜 받은 내용 : ", valueContents)
 
-            pageController.devlog.modify(valueContents.replace(/<br\s*\/?>/gi, '\n'));  // devlog 함수 추출
-            pageController.common.sendFormContents();  // devlog 함수 추출
+            pageController.category.modifyNew(valueContents);  // category 함수 추출
+            // pageController.common.sendFormContents();  // category 함수 추출
         </script>
         <!-- 스크립트 -->
     </body>
