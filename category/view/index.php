@@ -35,7 +35,7 @@
     // SEO
     $seo = [
         'title' => $info['postTitle'],
-        'description' => strip_tags($info['postContents']),
+        'description' => $info['postTitle'],
     ];
 
     if (isset($_SESSION['youGrade'])) {
