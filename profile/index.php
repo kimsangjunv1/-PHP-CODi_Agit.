@@ -12,9 +12,12 @@
     include $rootPath . "/src/components/common/component_connect.php";
     include $rootPath . "/src/components/common/component_session.php";
 
-    $myMemberID = $_SESSION['memberID'];
+    $memberID = $_SESSION['memberID'];
+    $grade = $_SESSION['youGrade'];
 
-    $sql = "SELECT * FROM boardMember WHERE memberID = '$myMemberID'";
+    $isGuest = $grade == 0;
+
+    $sql = "SELECT * FROM boardMember WHERE memberID = '$memberID'";
     $result = $connect -> query($sql);
 
     $info = $result -> fetch_array(MYSQLI_ASSOC);
@@ -27,52 +30,71 @@
     </head>
 
     <body>
-        <!-- 스킵 -->
-        <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
-        <!-- 스킵 END -->
-
-        <!-- 헤더 -->
         <?php include $rootPath . "/src/components/layout/header.php"; ?>
-        <!-- 헤더 END -->
 
-        <!-- 메인 -->
         <main id="profile">
             <section class="container-inner">
-                <article>
-                    <h2><?=$info['youName']?>님의 회원정보</h2>
-                    <p>안녕하세요 <?=$info['youName']?>님!<br>이곳에서 회원정보를 수정 할 수 있어요</p>
+                <?php
+                    if (!$isGuest) {
+                        echo "
+                            <article class='info'>
+                                <h2>회원정보</h2>
+                                <p>안녕하세요 {$info['youName']}님!<br>이곳에서 회원정보를 수정 할 수 있어요</p>
+                            </article>
+
+                            <article class='details'>
+                                <div>
+                                    <strong class='label'>이메일</strong>
+                                    <span>{$info['youEmail']}</span>
+                                </div>
+                                <div>
+                                    <strong class='label'>이름</strong>
+                                    <span>{$info['youName']}</span>
+                                </div>
+                                <div>
+                                    <strong class='label'>생성일자</strong>
+                                    <span>" . date('Y-m-d H:i',$info['regTime']) . "</span>
+                                </div>
+                            </article>
+                        ";
+                    } else {
+                        echo "
+                            <article class='alert'>
+                                <p>게스트 로그인은 회원정보 수정을 지원하지 않아요.</p>
+                            </article>
+                        ";
+                    }
+                ?>
+                <article class="state">
+                    <?php
+                        // if (!$isGuest) {
+                        //     echo "
+                        //         <a href='/profile/modify/save' class='button brand lg'>저장하기</a>
+                        //     ";
+                        // };
+                    ?>
+                    <a href='/login/leave' class='button border lg'>로그아웃</a>
                 </article>
 
-                <article>
-                    <div>
-                        <strong>이메일</strong>
-                        <span><?=$info['youEmail']?></span>
-                    </div>
-                    <div>
-                        <strong>이름</strong>
-                        <span><?=$info['youName']?></span>
-                    </div>
-                    <div>
-                        <strong>생성일자</strong>
-                        <span><?=date('Y-m-d H:i',$info['regTime'])?></span>
-                    </div>
-                    <!-- <div>
-                        <strong>연락처</strong>
-                        <span><?=$info['youPhone']?></span>
-                    </div> -->
-                </article>
-                
-                <article>
-                    <a href="/profile/modify/save">저장하기</a>   
-                    <a href="/profile/modify/remove">탈퇴하기</a>   
-                    <a href="/login/leave">로그아웃</a>   
+                <article class="remove">
+                    <?php
+                        if (!$isGuest) {
+                            echo "
+                                <form action='/profile/modify/remove' method='POST'>
+                                    <fieldset>
+                                        <legend class='blind'>회원 삭제 영역</legend>
+                                        <input type='text' name='userAnswer' placeholder='`삭제하겠습니다.`를 입력해주세요.' class='input border'>
+                                        <button type='submit' class='button red lg'>탈퇴하기</button>
+                                    </fieldset>
+                                </form>
+                            ";
+                        };
+                    ?>
                 </article>
             </section>
         </main>
-        <!-- 메인 END -->
-
-        <!-- 푸터 -->
+        
         <?php include $rootPath . "/src/components/layout/footer.php"?>
-        <!-- 푸터 END -->
+        <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
     </body>
 </html>

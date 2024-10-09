@@ -29,7 +29,7 @@
             // <li><a href='/" . $pathName . $search . "?page=1{$searchType}'>&lt;&lt;</a></li>
             if ( $page > 1 ) {
                 echo "
-                    <li><a href='/search/?page=" . ($page - 1) . "{$searchType}'>&lt;</a></li>
+                    <li><a href='/{$pathName}/?page=" . ($page - 1) . "&type={$searchType}'>&lt;</a></li>
                 ";
             }
 
@@ -38,14 +38,14 @@
                 $active = ($i == $page) ? "active" : ""; // 활성화 클래스 설정
 
                 echo "
-                    <li class='{$active}'><a href='/search/?page={$i}{$searchType}'>{$i}</a></li>
+                    <li class='{$active}'><a href='/{$pathName}/?page={$i}&type={$searchType}'>{$i}</a></li>
                 ";
             }
             
             // 다음 페이지, 마지막 페이지
             if ( $page < $totalPages ) {
                 echo "
-                    <li><a href='/search/?page=" . ($page + 1) . "{$searchType}'>&gt;</a></li>
+                    <li><a href='/{$pathName}/?page=" . ($page + 1) . "&type={$searchType}'>&gt;</a></li>
                 ";
             }
             // <li><a href='/" . $pathName . $search . "?page={$totalPages}{$searchType}'>&gt;&gt;</a></li>

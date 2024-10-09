@@ -52,9 +52,13 @@
                 ";
             }
         } else {
-            echo "<div class='item empty'>게시물이 없습니다.</div>";
+            if (isset($searchKeyword) && $searchKeyword) {
+                echo "<div class='item empty'>헉, '" . $searchKeyword . "'과 관련된 게시물이 없어요.</div>";
+            } else {
+                echo "<div class='item empty'>헉, 현재 작성된 게시물이 없어요.</div>";
+            };
         }
     } else {
-        echo "<div class='item empty'>게시물이 없습니다.</div>";
+        echo "<div class='item empty'>내역을 불러오는 도중 문제가 발생되었어요, 새로고침을 해주세요.</div>";
     }
 ?>

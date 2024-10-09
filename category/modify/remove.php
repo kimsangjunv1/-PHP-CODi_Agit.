@@ -1,25 +1,32 @@
 <?php
-    // SEO
-    $seo = [
-        'title' => '카테고리',
-        'description' => '오류해결과 관련된 팁들을 모아놨어요!',
-    ];
-
     // 최상위 경로
     $rootPath = $_SERVER['DOCUMENT_ROOT'];
 
     // MySQL 연결
     include $rootPath . "/src/components/common/component_connect.php";
     include $rootPath . "/src/components/common/component_session.php";
+    include $rootPath . "/src/components/common/component_grade_check.php";
 
-    // 받아올 값(POST 방식)
-    // $commentPass = $_POST["pass"];
-    $commentID = $_POST["commentID"];
 
-    $sql = "DELETE FROM classComment WHERE commentID = {$commentID}";
-    
-    // 데이터 가져옴
+    $postID = $connect -> real_escape_string($_GET['postID']);
+    $memberID = $connect -> real_escape_string($_SESSION['memberID']);
+
+    $sql = "SELECT postID, memberID FROM boardPost WHERE memberID = {$memberID} && postID = {$postID}";
     $result = $connect -> query($sql);
 
-    echo json_encode(array("info" => $commentID));
+    $memberInfo = $result -> fetch_array(MYSQLI_ASSOC);
+
+    if ($memberInfo['postID'] === $postID && $memberInfo['memberID'] === $memberID) {
+        $sql = "DELETE FROM boardPost WHERE postID = {$postID} && memberID = {$memberID}";
+        $connect -> query($sql);
+
+        Header("Location: /category");
+    } else {
+        echo "
+            <script>
+                alert('본인이 작성한 글만 삭제 하실 수 있어요.'); 
+                history.back();
+            </script>
+        ";
+    }
 ?>

@@ -7,13 +7,14 @@
     
     $sql = "
         CREATE TABLE boardComment(
-        commentID int(10) unsigned auto_increment,
+        postID int(10) NOT NULL,
         memberID int(10) NOT NULL,
-        blogID int(10) NOT NULL,
+        commentID int(10) unsigned auto_increment,
         commentName varchar(30) NOT NULL,
         commentMsg varchar(255) NOT NULL,
         commentPass varchar(10) NOT NULL,
         commentDelete int(10) NOT NULL,
+        modTime int(20) NOT NULL,
         regTime int(20) NOT NULL,
         PRIMARY KEY (commentID)
         ) charset=utf8;

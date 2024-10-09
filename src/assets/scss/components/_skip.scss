@@ -1,19 +1,18 @@
 /* 스킵 메뉴 */
 #skip {
-    position: relative;
-    z-index: 100000;
-
     > a {
-        background: #000;
+        background: var(--color-gray-900);
         color: #fff;
         position: absolute;
-        padding: 20px 40px;
+        padding: 1.6rem 2.4rem;
         left: -400px;
-        top: 5px;
+        top: 1.6rem;
+        z-index: 10000000000;
+        border-radius: 1.2rem;
         
         &:active,
         &:focus {
-            left: 5px;
+            left: 1.6rem;
         }
     }
 }

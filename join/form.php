@@ -11,18 +11,6 @@
     // MySQL 연결
     include $rootPath . "/src/components/common/component_connect.php";
     include $rootPath . "/src/components/common/component_session.php";
-
-    // $isChecked = $_POST["agreement"];
-
-    // if (!$isChecked) {
-    //     echo "
-    //         <script>
-    //             console.log('체크');
-    //             alert('동의에 체크를 해주세요.');
-    //             history.back();
-    //         </script>
-    //     ";
-    // }
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +20,6 @@
     </head>
     
     <body>
-        <!-- 메인 -->
         <main id="join">
             <section class="container-inner form">
                 <form action="/join/process" name="join" method="post" class="form">
@@ -46,19 +33,19 @@
                             <legend class="blind">회원가입</legend>
                             <section>
                                 <label class="label" for="youEmail">이메일</label>
-                                <input type="email" id="youEmail" name="youEmail" placeholder="이메일을 적어주세요!" class="input border" required />
+                                <input type="email" name="youEmail" placeholder="이메일을 적어주세요!" class="input border" required />
                             </section>
                             <section>
-                                <label class="label" for="youName">이름</label>
-                                <input type="text" id="youName" name="youName" placeholder="이름을 적어주세요!" class="input border" required />
+                                <label class="label" for="youName">별명</label>
+                                <input type="text" name="youName" placeholder="별명을 적어주세요!" class="input border" required />
                             </section>
                             <section>
                                 <label class="label" for="youPass">비밀번호</label>
-                                <input type="password" id="youPass" name="youPass" placeholder="비밀번호를 적어주세요!" class="input border" required />
+                                <input type="password" name="youPass" placeholder="비밀번호를 적어주세요!" class="input border" required />
                             </section>
                             <section>
-                                <label class="label" for="youPassC">비밀번호 확인</label>
-                                <input type="password" id="youPassC" name="youPassC" placeholder="확인 비밀번호를 적어주세요!" class="input border" required />
+                                <label class="label" for="youPassRecheck">비밀번호 확인</label>
+                                <input type="password" name="youPassRecheck" placeholder="확인 비밀번호를 적어주세요!" class="input border" required />
                             </section>
                             <!-- <section>
                                 <label class="label" for="youPhone">휴대폰번호</label>
@@ -68,16 +55,11 @@
 
                         <article class="footer">
                             <a href="/join" class="button border lg">이전으로</a>
-                            <button type="submit" class="button black lg">회원가입 완료</button>
+                            <button type="submit" class="button brand lg">가입하기</button>
                         </article>
                     </fieldset>
                 </form>
             </section>
         </main>
-        <!-- 메인 END -->
-
-        <!-- 푸터 -->
-        <?php include $rootPath . "/src/components/layout/footer.php"?>
-        <!-- 푸터 END -->
     </body>
 </html>

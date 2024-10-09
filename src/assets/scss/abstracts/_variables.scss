@@ -4,8 +4,8 @@
     --main-text-color: #000000;
 
     // 색상 : 브랜드
-    --color-brand-900: #870e35;
-    --color-brand-500: #ff3c7a;
+    --color-brand-900: #0f3caf;
+    --color-brand-500: #326CF9;
     --color-brand-50: #d9d9ec;
 
     // --color-brand-900: #1b1b6f;
@@ -46,7 +46,7 @@
 
     // 헤더 & 푸터 & 배너
     --header-height: 10.0rem;
-    --footer-height: 27.4rem;
+    --footer-height: 12.8rem;
 
     --section-space: 12.8rem;
     --between-space: 1.2rem;
@@ -64,6 +64,6 @@
 
     // 반응형 사이즈
     --pc: 1140px;
-    --tablet: 1024px;
+    --tablet: 768px;
     --mobile: 376px;
 }

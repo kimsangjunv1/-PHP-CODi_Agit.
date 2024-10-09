@@ -9,12 +9,13 @@
         CREATE TABLE boardPost(
         postID int(10) unsigned NOT NULL auto_increment,
         memberID int(10) NOT NULL,
-        postTitle varchar(50) NOT NULL,
+        postTitle varchar(150) NOT NULL,
         postContents longtext NOT NULL,
         postView int(10) NOT NULL,
         postLike int(10) NOT NULL,
         postImgFileUrl varchar(100) DEFAULT NULL,
         postCategory varchar(50) NOT NULL,
+        modTime int(20) NOT NULL,
         regTime int(20) NOT NULL,
         PRIMARY KEY (postID)
         ) charset=utf8;

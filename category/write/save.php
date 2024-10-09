@@ -1,10 +1,4 @@
 <?php
-    // SEO
-    $seo = [
-        'title' => '카테고리',
-        'description' => '오류해결과 관련된 팁들을 모아놨어요!',
-    ];
-
     // 최상위 경로
     $rootPath = $_SERVER['DOCUMENT_ROOT'];
 
@@ -22,6 +16,7 @@
 
     // 썸네일 첨부 여부에 따라 첨부 혹은 기본 이미지로 넣을지 결정
     $isAvailiable = $connect -> real_escape_string($_POST['postImgFileUrl']);
+
     if ($isAvailiable) {
         $postImgFileUrl = $isAvailiable;
     } else {
@@ -30,13 +25,13 @@
     
     // 보낼 쿼리 종합
     $sql = "
-        INSERT INTO boardPost(memberID, postTitle, postCategory, postContents, postImgFileUrl, postView, postLike, regTime)
-        VALUES('$memberID', '$postTitle', '$postCategory', '$postContents', '$postImgFileUrl', '$postView', 0, '$regTime')
+        INSERT INTO boardPost(memberID, postTitle, postCategory, postContents, postImgFileUrl, postView, postLike, modTime , regTime)
+        VALUES('$memberID', '$postTitle', '$postCategory', '$postContents', '$postImgFileUrl', '$postView', 0, '$regTime', '$regTime')
     ";
 
     // 쿼리 전송
     $connect -> query($sql);
 
-    Header("Location: /category");
+    Header("Location: /category/?type=");
     exit();  // 스크립트 종료
 ?>

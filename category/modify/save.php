@@ -11,6 +11,7 @@
     $postContents = $connect -> real_escape_string($_POST['postContents']);
     $memberID = $_SESSION['memberID'];
     $postID = $_POST['postID'];
+    $postImgFileUrl = $_POST['postImgFileUrl'];
     $postCategory = $_POST['postCategory'];
     $youPass = sha1($_POST['youPass']);
 
@@ -21,7 +22,8 @@
 
     if ($memberInfo['youPass'] === $youPass && $memberInfo['memberID'] === $memberID) {
         $sql = "
-            UPDATE boardPost SET postTitle = '{$postTitle}', postContents = '{$postContents}', postCategory = '{$postCategory}'
+            UPDATE boardPost
+            SET postTitle = '{$postTitle}', postContents = '{$postContents}', postCategory = '{$postCategory}', postImgFileUrl = '{$postImgFileUrl}'
             WHERE postID = '{$postID}'
         ";
         $connect -> query($sql);

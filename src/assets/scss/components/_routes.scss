@@ -5,6 +5,7 @@ main {
         .container-inner {
             padding: 0;
             gap: 3.2rem;
+            // max-width: none;
 
             > article {
                 display: flex;
@@ -85,8 +86,12 @@ main {
                             }
 
                             &.empty {
-                                background: var(--color-red-50);
-                                color: var(--color-red-500);
+                                background: var(--color-gray-100);
+                                color: var(--color-gray-500);
+                                padding: 1.6rem;
+                                border-radius: 1.2rem;
+                                text-align: center;
+                                justify-content: center;
                             }
 
                             &::after {
@@ -131,13 +136,91 @@ main {
 
                             > section {
                                 &.contents {
-                                    .progress {
-                                        height: 2px;
-                                        background: var(--color-brand-500);
-                                        animation: extendWidth 5s;
-                                        // animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-                                        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1);
-                                        animation-iteration-count: infinite;
+                                    gap: 1.6rem;
+
+                                    > section {
+                                        width: 50%;
+
+                                        &.container-pagination {
+                                            display: flex;
+                                            justify-content: space-between;
+
+                                            > p {
+                                                font-size: 2.4rem;
+                                                font-weight: 700;
+                                            }
+
+                                            > div {
+                                                display: flex;
+                                                align-items: center;
+
+                                                p {
+                                                    color: var(--color-gray-500);
+
+                                                    &:first-child {
+                                                        font-size: 1.8rem;
+                                                        font-weight: 700;
+                                                        color: var(--color-gray-800);
+                                                    }
+                                                    &:last-child {}
+                                                }
+                                            }
+                                        }
+
+                                        &.container-progress {
+                                            position: relative;
+                                            height: 2px;
+                                            border-bottom: 1px solid var(--color-gray-300);
+                                            padding-bottom: 1.2rem;
+                                            margin-bottom: 1.2rem;
+    
+                                            .progress {
+                                                height: 2px;
+                                                background: var(--color-brand-500);
+                                                animation: extendWidth 5s;
+                                                animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1);
+                                                animation-iteration-count: infinite;
+                                            }
+    
+                                            &::after,
+                                            &::before {
+                                                content: '';
+                                                width: 1px;
+                                                height: 11px;
+                                                background: var(--color-gray-300);
+                                                position: absolute;
+                                                bottom: calc(-1.2rem / 2);
+                                            }
+    
+                                            &::after {
+                                                left: 0;
+                                            }
+    
+                                            &::before {
+                                                right: 0;
+                                            }
+                                        }
+    
+                                        &.container-info {
+                                            h5,
+                                            p {
+                                                overflow: hidden;
+                                                -webkit-line-clamp: 2;
+                                                -webkit-box-orient: vertical;
+                                                display: -webkit-box;
+                                            }
+
+                                            h5 {
+                                                font-size: 2.4rem;
+                                                font-weight: 700;
+                                                color: var(--color-gray-800);
+                                                margin-bottom: 0.8rem;
+                                            }
+
+                                            p {
+                                                color: var(--color-gray-500);
+                                            }
+                                        }
                                     }
                                 }
 
@@ -215,6 +298,18 @@ main {
                         position: absolute;
                         bottom: 0;
                         left: 0;
+                        z-index: 100;
+                    }
+
+                    &::before {
+                        content: "";
+                        background: linear-gradient(-90deg, white, transparent);
+                        width: 12rem;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        z-index: 100;
                     }
                 }
 
@@ -417,7 +512,7 @@ main {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-                    gap: 1.6rem;
+                    gap: 0.4rem;
     
                     &.header {
                         > a {
@@ -426,11 +521,32 @@ main {
                                 display: block;
                             }
                         }
+
+                        > h2 {
+                            text-align: center;
+                            font-size: 3.2rem;
+                        }
+
+                        > p {
+                            color: var(--color-gray-500);
+                        }
                     }
                     
                     &.main {
                         display: flex;
                         flex-direction: column;
+
+                        > section {
+                            &.check {
+                                display: flex;
+                                align-items: center;
+                                gap: 0.4rem;
+                            }
+
+                            &.privacy {
+
+                            }
+                        }
                     }
     
                     &.footer {
@@ -439,7 +555,7 @@ main {
                             align-items: center;
                             justify-content: center;
                             flex-direction: column;
-                            gap: 1.6rem;
+                            gap: 0.4rem;
                             
                             > a {
                                 flex: 1;
@@ -487,12 +603,14 @@ main {
     }
 
     // 경로 : category 페이지
+    &#result,
     &#category {
+        // 공통
         .container-inner {
             > #tab {
                 display: flex;
                 flex-direction: row;
-                margin-top: 4rem;
+                // margin-top: 4rem;
                 gap: 2rem;
                 width: 100%;
                 
@@ -508,14 +626,27 @@ main {
 
             }
 
+            .info {
+                display: flex;
+                width: 100%;
+                gap: 0.8rem;
+
+                > h2 {
+                    font-size: 2.4rem;
+                }
+
+                > p {
+                    font-size: 1.6rem;
+                    font-weight: 700;
+                    color: var(--color-brand-500);
+                }
+            }
+
             > .contents {
+                width: 100%;
                 height: 100%;
 
                 > article {
-                    &#title {}
-    
-                    &#search {}
-    
                     &#list {
                         display: grid;
                         grid-template-columns: repeat(3,1fr);
@@ -557,8 +688,12 @@ main {
                             }
         
                             &.empty {
-                                background: var(--color-red-50);
-                                color: var(--color-red-500);
+                                background: var(--color-gray-100);
+                                color: var(--color-gray-500);
+                                padding: 1.6rem;
+                                border-radius: 1.2rem;
+                                text-align: center;
+                                justify-content: center;
                             }
                         }
                     }
@@ -577,15 +712,15 @@ main {
                 max-width: none;
 
                 > article {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
                     width: 100%;
 
                     &.header {
                         position: relative;
                         height: calc(100vh - var(--header-height));
                         transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) height;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
 
                         > img {
                             width: 100%;
@@ -640,6 +775,13 @@ main {
                     &.main {
                         max-width: var(--tablet);
 
+                        pre {
+                            width: 100%;
+                            overflow: auto;
+                            margin: 1.6rem 0;
+                            border-radius: 1.2rem;
+                        }
+
                         > div {
                             figure {
                                 img {
@@ -651,9 +793,13 @@ main {
                     }
 
                     &.footer {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        max-width: var(--tablet);
+
                         > section {
-                            &:first-child {}
-                            &:last-child {
+                            &:first-child {
                                 display: flex;
                                 gap: 0.8rem;
                                 
@@ -669,19 +815,110 @@ main {
                                     justify-content: center;
                                 }
                             }
+
+                            &:last-child {
+                                display: flex;
+                                gap: 3.2rem;
+                                border-top: 1px solid var(--color-gray-200);
+                                width: 100%;
+                                padding: 1.6rem 0;
+                                margin: 1.6rem 0;
+
+                                > .item {
+                                    display: flex;
+                                    // flex-direction: column;
+                                    justify-content: center;
+                                    align-items: center;
+                                    gap: 0.4rem;
+                                }
+                            }
                         }
                     }
                 }
             }
         }
 
+        &.modify,
         &.write {
             .container-inner {
                 display: flex;
 
                 > article {
                     width: 100%;
+
+                    > form {
+                        > fieldset {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 2.4rem;
+
+                            > section {
+                                display: flex;
+                                align-items: flex-start;
+                                flex-direction: column;
+                                gap: 1.2rem;
+
+                                img {
+                                    width: 12.8rem;
+                                    height: 12.8rem;
+                                    border-radius: 1.2rem;
+                                }
+                            }
+                        }
+                    }
                 }
+            }
+        }
+    }
+
+    &#profile {
+        .container-inner {
+            gap: 1.2rem;
+
+            > article {
+                width: 100%;
+
+                &.alert {
+                    background: var(--color-red-300);
+                    border-radius: 1.6rem;
+                    padding: 1.6rem;
+
+                    > p {
+                        color: var(--color-red-700);
+                    }
+                }
+
+                &.info {
+                    > h2 {
+                        color: var(--color-gray-800);
+                        font-size: 3.2rem;
+                    }
+
+                    > p {
+                        color: var(--color-gray-500);
+                    }
+                }
+
+                &.details {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.2rem;
+                    border: 1px solid var(--color-gray-200);
+                    border-radius: 1.6rem;
+                    padding: 1.6rem;
+
+                    > div {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.4rem;
+
+                        > strong {
+                            color: var(--color-gray-500);
+                        }
+                    }
+                }
+                &.state {}
+                &.remove {}
             }
         }
     }

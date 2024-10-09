@@ -10,6 +10,7 @@
         memberID int(10) unsigned NOT NULL AUTO_INCREMENT,
         youEmail varchar(40) UNIQUE NOT NULL,
         youName varchar(10) NOT NULL,
+        youGrade int(10) NOT NULL,
         youPass varchar(50) NOT NULL,
         regTime int(20) NOT NULL,
         PRIMARY KEY(memberID)

@@ -37,16 +37,22 @@
                     echo "
                         <a href='/category/view?postID={$info['postID']}' class='item {$direction}'>
                             <section class='contents'>
-                                <div>
+                                <section class='container-pagination'>
                                     <p>NEW</p>
                                     <div>
                                         <p class='currentSlide'>{$i}</p>
-                                        <p>{$count}</p>
+                                        <p> / {$count}</p>
                                     </div>
-                                </div>
-                                <div class='progress'></div>
-                                <h5>{$info['postTitle']}</h5>
-                                <p>".strip_tags($info['postContents'])."</p>
+                                </section>
+
+                                <section class='container-progress'>
+                                    <div class='progress'></div>
+                                </section>
+
+                                <section class='container-info'>
+                                    <h5>{$info['postTitle']}</h5>
+                                    <p>".strip_tags($info['postContents'])."</p>
+                                </section>
                             </section>
                             <section class='thumbnail'>
                     ";
@@ -65,10 +71,10 @@
                     ";
                 }
             } else {
-                echo "<div class='item empty'>게시물이 없습니다.</div>";
+                echo "<div class='item empty'>헉, 현재 작성된 게시물이 없어요.</div>";
             }
         } else {
-            echo "<div class='item empty'>게시물이 없습니다.</div>";
+            echo "<div class='item empty'>헉, 현재 작성된 게시물이 없어요.</div>";
         }
     ?>
 </article>

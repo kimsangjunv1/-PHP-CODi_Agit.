@@ -1,8 +1,8 @@
 <?php
     // SEO
     $seo = [
-        'title' => '카테고리',
-        'description' => '오류해결과 관련된 팁들을 모아놨어요!',
+        'title' => '회원탈퇴',
+        'description' => '요청하신 회원탈퇴가 완료되었습니다.',
     ];
 
     // 최상위 경로
@@ -12,6 +12,29 @@
     include $rootPath . "/src/components/common/component_connect.php";
     include $rootPath . "/src/components/common/component_session.php";
     include $rootPath . "/src/components/common/component_session_check.php";
+    
+    $userAnswer = $_POST['userAnswer'];
+    $correctAnswer = "삭제하겠습니다.";
+
+    $memberID = $connect -> real_escape_string($_SESSION['memberID']);
+    
+    if ($userAnswer == $correctAnswer) {
+        $sql = "DELETE FROM boardPost WHERE memberID = {$memberID}";
+        $connect -> query($sql);
+        $sql = "DELETE FROM boardComment WHERE memberID = {$memberID}";
+        $connect -> query($sql);
+        $sql = "DELETE FROM boardMember WHERE memberID = {$memberID}";
+        $connect -> query($sql);
+
+        session_destroy();
+    } else {
+        echo "
+            <script>
+                alert('답변이 틀렸습니다.');
+                window.location.href = '/profile';
+            </script>
+        ";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -21,70 +44,19 @@
     </head>
     
     <body>
-        <!-- 스킵 -->
-        <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
-        <!-- 스킵 END -->
-
-        <!-- 헤더 -->
         <?php include $rootPath . "/src/components/layout/header.php"; ?>
-        <!-- 헤더 END -->
-        
-        <!-- 메인 -->
-        <div id="login" class="remove">
+
+        <main id="profile" class="result">
             <section class="container-inner">
-                <img class="notice_logo" src="../../assets/img/site_board_edit_delete.png" alt="">
-                <article>
-                    <?php
-                        $youDeleteAnswer = $_GET['youDeleteAnswer'];
-                        // var_dump($youDeleteAnswer);
-                        $myMemberID = $_SESSION['myMemberID'];
+                <h2>회원탈퇴 완료</h2>
+                <p>탈퇴가 완료되었어요,<br />다음에 다시 방문하실때까지 좀 더 좋은 모습으로 갖춰놓도록 노력할게요!</p>
 
-                        $myMemberID = $connect -> real_escape_string($myMemberID);
-                        
-                        if("삭제하겠습니다" == $youDeleteAnswer){
-                            $sql = "DELETE FROM myBoard WHERE myMemberID = {$myMemberID}";
-                            $connect -> query($sql);
-                            $sql = "DELETE FROM myEvent WHERE myMemberID = {$myMemberID}";
-                            $connect -> query($sql);
-                            $sql = "DELETE FROM myComment WHERE myMemberID = {$myMemberID}";
-                            $connect -> query($sql);
-                            $sql = "DELETE FROM myDecoboard WHERE myMemberID = {$myMemberID}";
-                            $connect -> query($sql);
-                            $sql = "DELETE FROM myEvent WHERE myMemberID = {$myMemberID}";
-                            $connect -> query($sql);
-                            $sql = "DELETE FROM myEventComment WHERE myMemberID = {$myMemberID}";
-                            $connect -> query($sql);
-                            $sql = "DELETE FROM myComment WHERE myMemberID = {$myMemberID}";
-                            $connect -> query($sql);
-                            $sql = "DELETE FROM test WHERE myMemberID = {$myMemberID}";
-                            $connect -> query($sql);
-                            $sql = "DELETE FROM myMember WHERE myMemberID = {$myMemberID}";
-                            $connect -> query($sql);
+                <a href="/home" class="button brand lg">메인으로</a>
+            </section>    
+        </main>
 
-                            echo "<script>alert('삭제되었습니다..');</script>";
-                            Header("Location: /home");
-
-                            session_start();
-                            session_destroy();
-
-                        } else {
-                            echo "<script>alert('답변이 틀렸습니다.');</script>";
-                        }
-                    ?>
-                </article>
-                
-                <article>
-                    <p class="cross">ID가 삭제되었습니다, 하단의 버튼을 눌러 확인해주세요!</p>
-                    <img src="../assets/img/site_board_notice_cross.png" alt="">
-                    <button style="width:216px;" type="submit" class="input__Btn"><a href="board.php">확인</a></button>
-                </article>
-            </section>
-        </div>
-        <!-- 메인 END -->
-
-        <!-- 푸터 -->
         <?php include $rootPath . "/src/components/layout/footer.php"?>
-        <!-- 푸터 END -->
+        <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
     </body>
 
     <script src="../../assets/javascript/common.js"></script>

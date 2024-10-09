@@ -26,7 +26,9 @@
 .input {
     width: 100%;
     color: var(--color-gray-700);
+    border-color: var(--color-gray-100);
     font-size: 1.4rem;
+    transition: 0.25s border-color;
     
     &.border {
         padding: 0.2rem 1.6rem;
@@ -38,6 +40,10 @@
         border: none;
         border-bottom: 1px solid var(--color-gray-100);
     }
+
+    &:hover {
+        border-color: var(--color-brand-500);
+    }
 }
 
 .button {
@@ -45,15 +51,28 @@
     font-size: 1.4rem;
     font-weight: 600;
     border-radius: 0.8rem;
+    transition: 0.25s filter, background, background-color;
+    background: transparent;
 
     &.border {
         border: 1px solid var(--color-gray-500);
+
+        &:hover {
+            background: var(--color-gray-800);
+            color: white;
+        }
     }
 
     &.gray {
         background: var(--color-gray-100);
         border: 1px solid var(--color-gray-100);
         color: var(--color-gray-500);
+    }
+
+    &.red {
+        background: var(--color-red-500);
+        border: 1px solid var(--color-red-500);
+        color: white
     }
 
     &.brand {
@@ -77,6 +96,10 @@
         padding: 1.6rem;
         width: 100%;
     }
+
+    &:hover {
+        filter: brightness(0.8);
+    }
 }
 
 .notice {
@@ -89,6 +112,64 @@
         font-size: 1.2rem;
         text-align: center;
         line-height: 1.5;
+    }
+}
+
+.floating {
+    position: fixed;
+    bottom: 1.6rem;
+    right: 1.6rem;
+    border-radius: 1.6rem;
+    background: var(--color-brand-500);
+    color: #fff;
+    width: 7.2rem;
+    height: 7.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > img {
+        width: 3.2rem;
+        filter: invert(1);
+    }
+}
+
+.select {
+    padding: .2rem 1.6rem;
+    border: 1px solid var(--color-gray-100);
+    border-radius: .8rem;
+    height: 4.8rem;
+}
+
+// 기본 사이즈
+.button,
+.input {
+    &.w- {
+        &auto {
+            width: auto;
+        }
+
+        &50 {
+            width: 50%;
+        }
+
+        &100 {
+            width: 100%;
+        }
+    }
+
+    &.h- {
+        &auto {
+            height: auto;
+        }
+
+        &50 {
+            height: 50%;
+        }
+
+        &100 {
+            height: 100%;
+        }
     }
 }
 
@@ -109,6 +190,44 @@
 	overflow: hidden;
 }
 
+.sun-editor {
+    width: 100%;
+    display: block;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    border-color: var(--color-gray-100) !important;
+    padding: 1.2rem;
+
+    .se-toolbar {
+        background: var(--color-gray-100);
+        outline: 1px solid var(--color-gray-200) !important;
+        border-radius: 0.8rem;
+    }
+
+    .se-resizing-bar {
+        background-color: var(--color-gray-700) !important;
+        border-radius: 0.4rem;
+        border-top: none;
+        transition: 0.25s background-color;
+
+        &:hover {
+            background-color: var(--color-brand-500) !important;
+        }
+
+        .se-navigation {
+            color: white !important;
+        }
+    }
+
+    .se-btn-select {
+        align-items: center;
+    }
+
+    .se-wrapper-inner {
+        padding: 1.2rem 0;
+    }
+}
+
 #search {
     position: fixed;
     top: 0;
@@ -120,29 +239,65 @@
 
     form {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         height: 100%;
         width: 100%;
-
+        
         fieldset {
+            position: relative;
             display: flex;
-            gap: 1.6rem;
-
+            flex-direction: column;
+            align-items: center;
+            gap: 5.2rem;
+            max-width: var(--tablet);
+            width: 100%;
+            padding: 5.2rem 0;
+            
             > button {
+                position: absolute;
+                top: 5.2rem;
+                right: 0;
                 text-wrap: nowrap;
                 width: auto;
+                color: #fff;
+
+                > img {
+                    pointer-events: none;
+                    filter: invert(1);
+                }
+
+                &.none {
+                    display: none !important;
+                }
+            }
+
+            > div {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+
+                > input {
+                    flex: 1;
+                }
             }
         }
     }
 
     &.none {
-        display: none;
+        display: none !important;
+    }
+
+    &.unfixed {
+        position: static !important;
+        border-radius: 1.6rem;
     }
 }
 
 #pagination {
     width: 100%;
+    padding: 1.6rem;
 
     ul {
         width: 100%;
@@ -151,7 +306,20 @@
         align-items: center;
 
         li {
-            padding: 0.2rem;
+            padding: 0.4rem 1.2rem;
+
+            &.active {
+                background: var(--color-gray-100);
+                border-radius: 0.8rem;
+
+                > a {
+                    color: var(--color-gray-700);
+                }
+            }
+
+            > a {
+                color: var(--color-gray-500);
+            }
         }
     }
 }

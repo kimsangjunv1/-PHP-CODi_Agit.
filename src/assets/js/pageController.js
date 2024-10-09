@@ -35,7 +35,7 @@ export class pageController {
             const buttons = document.querySelectorAll("#tab button");
             const element = document.querySelectorAll("#home article");
 
-            let idName = "";
+            let idName = "js";
 
             const removeClassNameNone = () => {
                 element.forEach((e, i) => {
@@ -158,8 +158,8 @@ export class pageController {
             const editor = SUNEDITOR.create('postContents', {
                 lang: SUNEDITOR_LANG['ko'],
                 width: "100%",
-                height: 400,
-                buttonList: [['font', 'fontSize', 'formatBlock', 'bold', 'underline', 'italic', 'strike', 'subscript', 'superscript', 'fontColor', 'hiliteColor', 'indent', 'outdent', 'align', 'list', 'table', 'link', 'image', 'video', 'fullScreen', 'showBlocks', 'codeView', 'preview']],
+                height: 512,
+                buttonList: [['font', 'fontSize', 'formatBlock', 'bold', 'underline', 'italic', 'strike', 'subscript', 'superscript', 'fontColor', 'hiliteColor', 'indent', 'outdent', 'align', 'list', 'table', 'link', 'image', 'video', 'audio', 'fullScreen', 'showBlocks', 'codeView', 'preview', 'imageGallery']]
             });
 
             const elementForm = document.querySelector("#form");
@@ -171,11 +171,12 @@ export class pageController {
         },
 
         modifyNew: (value) => {
+            // const test = document.getElementById("postContents").innerHTML;
             const editor = SUNEDITOR.create('postContents', {
                 lang: SUNEDITOR_LANG['ko'],
                 width: "100%",
                 height: 400,
-                buttonList: [['font', 'fontSize', 'formatBlock', 'bold', 'underline', 'italic', 'strike', 'subscript', 'superscript', 'fontColor', 'hiliteColor', 'indent', 'outdent', 'align', 'list', 'table', 'link', 'image', 'video', 'fullScreen', 'showBlocks', 'codeView', 'preview']],
+                buttonList: [['font', 'fontSize', 'formatBlock', 'bold', 'underline', 'italic', 'strike', 'subscript', 'superscript', 'fontColor', 'hiliteColor', 'indent', 'outdent', 'align', 'list', 'table', 'link', 'image', 'video', 'audio', 'fullScreen', 'showBlocks', 'codeView', 'preview', 'imageGallery']]
             });
 
             const elementForm = document.querySelector("#form");
@@ -189,6 +190,28 @@ export class pageController {
         remove: () => {
 
         },
+
+        view: () => {
+            const elementPre = document.querySelectorAll("pre");
+            const elementHeader = document.querySelector("header");
+        
+            elementPre.forEach((e, i) => {
+                const elementCode = e.querySelector("code");
+
+                if (!elementCode) {
+                    let value = e.innerHTML;
+
+                    e.innerHTML = `
+                        <code>${value}</code>
+                    `
+                    e.classList.add("asdasdasd");
+                } else {
+                    elementCode.classList.add("hljs");
+                }
+            })
+
+            elementHeader.classList.add("transparent");
+        }
     }
 
     static login() {
@@ -250,14 +273,9 @@ export class pageController {
         // 함수 : 폼데이터 전달
         sendFormContents: () => {
             document.querySelector("#form").addEventListener("submit", (event) => {
-                event.preventDefault();
-
                 const content = this.editor.getMarkdown(); // Get markdown or use getHtml() for HTML content
+
                 document.querySelector("#postContents").value = content.replace(/<br\s*\/?>/gi, '\n'); // Sync content to textarea
-
-                console.log("content", content.replace(/<br\s*\/?>/gi, '\n'));
-
-                // 폼 제출
                 event.target.submit(); // 이제 폼을 제출합니다.
             })
         },
@@ -302,7 +320,6 @@ export class pageController {
                 const result = await response.json();
 
                 if (result.success) {
-                    console.log("이미지 : ",result);
                     // 업로드 성공 시 이미지 URL을 에디터에 삽입
                     callback(result.imageUrl, "Image");
                 } else {

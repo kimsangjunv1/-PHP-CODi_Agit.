@@ -27,7 +27,7 @@
                     <fieldset>
                         <article class="header">
                             <a href="/home">
-                                <img src="/src/assets/images/common/img-header-logo.svg" alt="코디 아지트">
+                                <img src="/src/assets/images/common/img-logo-color.svg" alt="코디 아지트">
                             </a>
                         </article>
 
@@ -53,17 +53,17 @@
                                     <hr>
                                 </div>
                                 
-                                <a href="/guest" class="button border lg">게스트 접속</a>
+                                <a href="/login/guest" class="button border lg">게스트 접속</a>
                             </section>
-                            <section class="help">
+                            <!-- <section class="help">
                                 <a href="#">아이디 찾기</a>
                                 <hr>
                                 <a href="#">비밀번호 찾기</a>
                                 <hr>
                                 <a href="/join">회원가입</a>
-                            </section>
+                            </section> -->
                             <section class="notice">
-                                <p>로그인시 프로필 사진과 함께 댓글 작성이 가능해요 <br />댓글 작성만 원하실 경우 게스트 로그인을 눌러주세요</p>
+                                <p>회원가입 기능은 현재 임시 비활성화 상태입니다. <br />댓글 작성만 원하실 경우 게스트 로그인을 눌러주세요</p>
                             </section>
                         </article>
                     </fieldset>

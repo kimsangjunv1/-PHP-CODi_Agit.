@@ -20,15 +20,8 @@
     </head>
     
     <body>
-        <!-- 스킵 -->
-        <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
-        <!-- 스킵 END -->
-
-        <!-- 헤더 -->
         <?php include $rootPath . "/src/components/layout/header.php"; ?>
-        <!-- 헤더 END -->
         
-        <!-- 메인 -->
         <main id="login">
             <section class="container-inner save">
                 <article>
@@ -47,7 +40,7 @@
                         }
 
                         // 데이터 조회
-                        $sql = "SELECT memberID, youEmail, youName, youPass FROM boardMember WHERE youEmail = '$youEmail' AND youPass = '$youPass'";
+                        $sql = "SELECT memberID, youEmail, youName, youPass, youGrade FROM boardMember WHERE youEmail = '$youEmail' AND youPass = '$youPass'";
                         $result = $connect -> query($sql);
 
                         if ($result) {
@@ -66,6 +59,7 @@
                             $_SESSION['memberID'] = $memberInfo['memberID'];
                             $_SESSION['youEmail'] = $memberInfo['youEmail'];
                             $_SESSION['youName'] = $memberInfo['youName'];
+                            $_SESSION['youGrade'] = $memberInfo['youGrade'];
 
                             Header("Location: /home");
                         }
@@ -76,10 +70,8 @@
             </section>
             <!-- //banner -->
         </main>
-        <!-- 메인 END -->
-
-        <!-- 푸터 -->
+        
         <?php include $rootPath . "/src/components/layout/footer.php"?>
-        <!-- 푸터 END -->
+        <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
     </body>
 </html>

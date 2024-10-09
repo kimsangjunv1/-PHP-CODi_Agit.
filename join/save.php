@@ -1,8 +1,8 @@
 <?php
     // SEO
     $seo = [
-        'title' => '카테고리',
-        'description' => '오류해결과 관련된 팁들을 모아놨어요!',
+        'title' => '회원가입 결과안내',
+        'description' => '회원가입 처리 결과에 관해 안내 드려요.',
     ];
 
     // 최상위 경로
@@ -26,19 +26,14 @@
                 <div class="form">
                     <article class="header">
                         <h2>결과안내</h2>
-                        <!-- <p>
-                            회원가입은 1인당 1개의 이메일 계정을 이용할 수 있습니다.
-                            <br>
-                            회원의 개인정보를 안전하게 취급하고, 교육을 목적으로 사용됩니다.
-                        </p> -->
                     </article>
     
                     <article class="main">
-                        <p>회원가입 완료</p>
+                        <p>회원가입이 완료되었어요,<br/>지금부터 댓글 작성 및 나만의 프로필 변경이 가능해요!</p>
                     </article>
     
                     <article class="footer">
-                        <a href="/login" class="button black lg">로그인 하러가기</a>
+                        <a href="/login" class="button brand lg">로그인 하러가기</a>
                         <a href="/home" class="button border lg">메인으로</a>
                     </article>
                 </div>

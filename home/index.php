@@ -31,11 +31,11 @@
                 <?php include $rootPath . "/src/components/routes/home/section_post_specific.php"; ?>
 
                 <?php include $rootPath . "/src/components/common/component_search.php"; ?>
-                <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
             </section>    
         </main>
         
         <?php include $rootPath . "/src/components/layout/footer.php"?>
+        <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
 
         <script type="module" defer>
             import { pageController } from "/src/assets/js/pageController.js";

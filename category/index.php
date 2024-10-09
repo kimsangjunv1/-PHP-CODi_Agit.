@@ -29,6 +29,10 @@
     include $rootPath . "/src/components/common/component_session.php";
 
     $selectedType = $connect -> real_escape_string(trim($_GET['type']));
+
+    // 등급이 2인 사람만 가능하게
+    $memberGrade = $_SESSION['youGrade'];
+    $type = $_GET['type'];
 ?>
 
 <!DOCTYPE html>
@@ -42,9 +46,13 @@
 
         <main id="category">
             <section class="container-inner">
-                <?php include $rootPath . "/src/components/routes/category/section_post_tab.php"; ?>
+                <?php
+                    $pathName = "category";
 
-                <div class="contents">
+                    include $rootPath . "/src/components/routes/category/section_post_tab.php"; 
+                ?>
+
+                <article class="contents">
                     <!-- 게시물 컴포넌트 -->
                     <article id="list">
                         <?php 
@@ -88,16 +96,21 @@
                     <?php
                         $currentPath = "category";
 
-                        if (isset($_SESSION['memberID'])) {
-                            echo "<a href='/{$currentPath}/write' class='button border lg'>글쓰기</a>";
+                        if ($memberGrade == 2) {
+                            echo "
+                                <a href='/{$currentPath}/write?type={$type}' class='floating'>
+                                    <img src='/src/assets/images/icon/ico-write.svg' alt='글쓰기'>
+                                </a>
+                            ";
                         };
                     ?>
-                </div>
+                </article>
 
-                <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
+                <?php include $rootPath . "/src/components/common/component_search.php"; ?>
             </section>
         </main>
         
         <?php include $rootPath . "/src/components/layout/footer.php"?>
+        <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
     </body>
 </html>

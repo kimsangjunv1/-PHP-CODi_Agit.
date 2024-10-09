@@ -5,9 +5,10 @@
 ```
 PHP
 SCSS
-Parsedown
+lenis
 Sun Editor
-Toast UI Editor (사용중단)
+Parsedown (마크업 관련 사용중단)
+Toast UI Editor (마크업 관련 사용중단)
 
 ```
 
@@ -20,12 +21,11 @@ Toast UI Editor (사용중단)
 ### 접속방법
 
 ```
-닷홈
-준비중
+https://codi-agit.com/
 ```
 
 ### 용도
 
 ```
-제가 생각하고 해보고 느낀것, 좋아하는 것들을 모아놓은 아지트입니다.
+제가 생각하고 해보고 느낀것, 좋아하는 것들을 모아놓을 아지트입니다.
 ```
