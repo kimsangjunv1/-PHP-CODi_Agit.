@@ -29,10 +29,14 @@
     include $rootPath . "/src/components/common/component_session.php";
 
     $selectedType = $connect -> real_escape_string(trim($_GET['type']));
+    $type = $_GET['type'];
 
     // 등급이 2인 사람만 가능하게
-    $memberGrade = $_SESSION['youGrade'];
-    $type = $_GET['type'];
+    if (isset($_SESSION['youGrade'])) {
+        $memberGrade = $_SESSION['youGrade'];
+    } else {
+        $memberGrade = 0;
+    };
 ?>
 
 <!DOCTYPE html>

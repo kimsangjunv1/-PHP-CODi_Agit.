@@ -37,8 +37,12 @@
         'title' => $info['postTitle'],
         'description' => strip_tags($info['postContents']),
     ];
-    
-    $memberGrade = $_SESSION['youGrade'];
+
+    if (isset($_SESSION['youGrade'])) {
+        $memberGrade = $_SESSION['youGrade'];
+    } else {
+        $memberGrade = 0;
+    };
 ?>
 
 <!DOCTYPE html>

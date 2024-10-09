@@ -35,6 +35,9 @@
 <meta name="msapplication-TileColor" content="#000000" />
 <meta name="theme-color" content="#000000" />
 
+<meta name="google-site-verification" content="qlarp5kejHuLMiw9Co82-ZLSGQVUy6D6ZAQUURM_UJI" />
+<meta name="naver-site-verification" content="904a6acfc526c8b6a22b2b3e3a9cc5ed4652f366" />
+
 <title><?php echo $seo["title"]; ?> | 코디 아지트.</title>
 
 <!-- CSS -->

@@ -12,3 +12,9 @@ RewriteRule ^$ /home [R=301,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([a-zA-Z0-9_/]+)$ $1.php [L]
+
+# 특정 파일에 대한 접근 차단
+<Files "component_connect.php">
+    Order allow,deny
+    Deny from all
+</Files>
