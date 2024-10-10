@@ -13,6 +13,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([a-zA-Z0-9_/]+)$ $1.php [L]
 
+# 각 오류 발생시 error 라우트 연결
+ErrorDocument 404 /error/index.php
+ErrorDocument 500 /error/index.php
+
 # 특정 파일에 대한 접근 차단
 <Files "component_connect.php">
     Order allow,deny
