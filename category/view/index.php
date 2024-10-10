@@ -6,7 +6,12 @@
     include $rootPath . "/src/components/common/component_connect.php";
     include $rootPath . "/src/components/common/component_session.php";
 
-    $postID = $_GET['postID'];
+    $postID = isset($_GET['postID']) ? (int)$_GET['postID'] : 0;
+
+    if ($postID <= 0) {
+        header("Location: /error/");
+        exit();
+    }
 
     // 보드뷰 + 1(UPDATE)
     $sql = "UPDATE boardPost SET postView = postView + 1 WHERE postID = {$postID}";
