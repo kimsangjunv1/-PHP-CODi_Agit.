@@ -31,44 +31,6 @@ export class pageController {
     }
 
     static home = {
-        specific: () => {
-            const buttons = document.querySelectorAll("#tab button");
-            const element = document.querySelectorAll("#home article");
-
-            let idName = "js";
-
-            const removeClassNameNone = () => {
-                element.forEach((e, i) => {
-                    if (e.id !== "showcase" && e.id !== "all" && e.id !== "tab") {
-                        e.classList.add("none")
-                    };
-
-                    if (idName === '') {
-                        idName = "programmers";
-                    };
-
-                    if (e.id === idName) {
-                        e.classList.remove("none");
-                    };
-                });
-            }
-
-            if (buttons) {
-                buttons.forEach((e, i) => {
-                    // 각 버튼에 클릭 이벤트 추가
-                    e.addEventListener("click", (event) => {
-                        buttons.forEach(button => button.classList.remove("active"));
-                        event.target.classList.add("active");
-                        idName = event.target.value;
-                
-                        removeClassNameNone();
-                    });
-                });
-            };
-
-            removeClassNameNone();
-        },
-
         showcase: () => {
             const container = document.querySelector("#showcase");
             const elementItem = container.querySelectorAll(".item");
@@ -146,6 +108,44 @@ export class pageController {
                     }
                 });
             });
+        },
+        
+        specific: () => {
+            const buttons = document.querySelectorAll("#tab button");
+            const element = document.querySelectorAll("#home article");
+
+            let idName = "js";
+
+            const removeClassNameNone = () => {
+                element.forEach((e, i) => {
+                    if (e.id !== "showcase" && e.id !== "all" && e.id !== "tab") {
+                        e.classList.add("none")
+                    };
+
+                    if (idName === '') {
+                        idName = "programmers";
+                    };
+
+                    if (e.id === idName) {
+                        e.classList.remove("none");
+                    };
+                });
+            }
+
+            if (buttons) {
+                buttons.forEach((e, i) => {
+                    // 각 버튼에 클릭 이벤트 추가
+                    e.addEventListener("click", (event) => {
+                        buttons.forEach(button => button.classList.remove("active"));
+                        event.target.classList.add("active");
+                        idName = event.target.value;
+                
+                        removeClassNameNone();
+                    });
+                });
+            };
+
+            removeClassNameNone();
         }
     }
 
@@ -262,6 +262,65 @@ export class pageController {
             
         },
 
+        sendLike: () => {
+            const elementsLike = document.querySelectorAll(".like");
+
+            const postID = document.querySelector("#postID").value;
+            const memberID = document.querySelector("#memberID").value;
+
+            const getLike = async() => {
+                try {
+                    const response = await fetch("/src/api/controller_like.php", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            memberID: memberID,
+                            postID: postID,
+                        }),
+                    });
+
+                    const result = await response.json();
+    
+                    return result.success && result.stat;
+                } catch (error) {
+                    console.error("반영 중 실패:", error);
+                }
+            }
+
+            elementsLike.forEach((e, i) => {
+                let isNeedPrevent = false;
+
+                // 함수 : 좋아요 상태 업데이트
+                const setLikeCount = (stat, element, value) => {
+                    stat ? e.classList.add("active") : e.classList.remove("active");
+                    element.innerText = stat ? value + 1 : value - 1;
+                }
+
+                // 함수 : 이벤트 방지 상태 업데이트
+                const setStatePrevent = () => {
+                    isNeedPrevent = !isNeedPrevent;
+                    console.log("막기 상태", isNeedPrevent);
+                }
+
+                
+                e.addEventListener("click", async() => {
+                    const elementLikeCount = e.querySelector(".countLike");
+
+                    if (!isNeedPrevent && elementLikeCount) {
+                        const value = parseInt(elementLikeCount.innerText);
+                        let result = await getLike();
+    
+                        setLikeCount(result, elementLikeCount, value);
+                        setStatePrevent();
+                        setTimeout(() => setStatePrevent(), 1000);
+                    }
+                })
+            })
+
+        },
+
         // 함수 : 현재 스크롤 값 반환
         checkCurrentScroll: () => {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -290,7 +349,7 @@ export class pageController {
             console.log("formdata : ", formData);
 
             try {
-                const response = await fetch("/src/components/common/component_upload.php", {
+                const response = await fetch("/src/api/controller_upload.php", {
                     method: "POST",
                     body: formData
                 });
@@ -313,7 +372,7 @@ export class pageController {
             formData.append("imgFile", blob); // 서버에서 받을 이름과 맞춤
 
             try {
-                const response = await fetch("/src/components/common/component_upload.php", {
+                const response = await fetch("/src/api/controller_upload.php", {
                     method: "POST",
                     body: formData
                 });

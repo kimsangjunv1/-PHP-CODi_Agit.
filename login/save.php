@@ -1,77 +1,46 @@
 <?php
-    // SEO
-    $seo = [
-        'title' => '카테고리',
-        'description' => '오류해결과 관련된 팁들을 모아놨어요!',
-    ];
-
     // 최상위 경로
     $rootPath = $_SERVER['DOCUMENT_ROOT'];
 
     // MySQL 연결
     include $rootPath . "/src/components/common/component_connect.php";
     include $rootPath . "/src/components/common/component_session.php";
-?>
 
-<!DOCTYPE html>
-<html lang="ko">
-    <head>
-        <?php include $rootPath . "/src/components/layout/head.php"; ?>
-    </head>
+    $youEmail = $_POST['youEmail'];
+    $youPass = sha1($_POST['youPass']);
     
-    <body>
-        <?php include $rootPath . "/src/components/layout/header.php"; ?>
-        
-        <main id="login">
-            <section class="container-inner save">
-                <article>
-                    <h2 class="blind">로그인 성공.</h2>
-                    <img src="../assets/img/banner_img03.svg" alt="배너 이미지">
-                </article>
+    function msg($target){
+        echo "
+            <script>
+                alert('$target');
+                history.back();
+            </script>
+        ";
+    }
 
-                <article>
-                    <?php
-                        $youEmail = $_POST['youEmail'];
-                        $youPass = sha1($_POST['youPass']);
-                        
-                        function msg($target){
-                            echo "<p class='alert'>{$target}</p>";
-                            echo "<a href='/login'>로그인</a>";
-                        }
+    // 데이터 조회
+    $sql = "SELECT memberID, youEmail, youName, youPass, youGrade FROM boardMember WHERE youEmail = '$youEmail' AND youPass = '$youPass'";
+    $result = $connect -> query($sql);
+    
+    if ($result) {
+        $count = $result -> num_rows;
+    } else {
+        msg("에러발생 - 관리자에게 문의하세요");
+    }
 
-                        // 데이터 조회
-                        $sql = "SELECT memberID, youEmail, youName, youPass, youGrade FROM boardMember WHERE youEmail = '$youEmail' AND youPass = '$youPass'";
-                        $result = $connect -> query($sql);
+    if ($count == 0) {
+        //로그인 실패
+        msg("이메일 또는 비밀번호를 다시 확인해주세요.");
+    } else {
+        //로그인 성공
+        $memberInfo = $result -> fetch_array(MYSQLI_ASSOC);
 
-                        if ($result) {
-                            $count = $result -> num_rows;
-                        } else {
-                            msg("에러발생 - 관리자에게 문의하세요");
-                        }
+        //섹션 생성
+        $_SESSION['memberID'] = $memberInfo['memberID'];
+        $_SESSION['youEmail'] = $memberInfo['youEmail'];
+        $_SESSION['youName'] = $memberInfo['youName'];
+        $_SESSION['youGrade'] = $memberInfo['youGrade'];
 
-                        if ($count == 0) {
-                            msg("이메일 또는 비밀번호가 틀렸습니다.");
-                        } else {
-                            //로그인 성공
-                            $memberInfo = $result -> fetch_array(MYSQLI_ASSOC);
-
-                            //섹션 생성
-                            $_SESSION['memberID'] = $memberInfo['memberID'];
-                            $_SESSION['youEmail'] = $memberInfo['youEmail'];
-                            $_SESSION['youName'] = $memberInfo['youName'];
-                            $_SESSION['youGrade'] = $memberInfo['youGrade'];
-
-                            Header("Location: /home");
-                        }
-                    ?>
-                </article>
-
-                <a href="/home">메인으로</a>
-            </section>
-            <!-- //banner -->
-        </main>
-        
-        <?php include $rootPath . "/src/components/layout/footer.php"?>
-        <?php include $rootPath . "/src/components/common/component_skip.php"; ?>
-    </body>
-</html>
+        Header("Location: /home");
+    }
+?>

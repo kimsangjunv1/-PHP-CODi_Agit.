@@ -13,12 +13,20 @@
         exit();
     }
 
+    $likeSql = "
+        SELECT b.postID FROM boardLikes b WHERE b.postID = {$postID}
+    ";
+
+    $result = $connect -> query($likeSql);
+
+    $countLikes = $result -> num_rows;
+
     // 보드뷰 + 1(UPDATE)
     $sql = "UPDATE boardPost SET postView = postView + 1 WHERE postID = {$postID}";
     $connect -> query($sql);
 
     $sql = "
-        SELECT b.postTitle, m.youName, b.regTime, b.postView, b.postLike, b.postContents, b.postCategory, b.postImgFileUrl
+        SELECT b.postTitle, b.memberID, m.youName, b.regTime, b.postView, b.postContents, b.postCategory, b.postImgFileUrl
         FROM boardPost b
         JOIN boardMember m
         ON(m.memberID = b.memberID)
@@ -48,6 +56,10 @@
     } else {
         $memberGrade = 0;
     };
+
+    if (isset($_SESSION['memberID'])) {
+        $memberID = $_SESSION['memberID'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +101,7 @@
                 </article>
 
                 <article class="footer">
-                    <section>
+                    <section class="modify">
                         <?php
                             $postID = $connect -> real_escape_string(trim($_GET['postID']));
     
@@ -101,17 +113,21 @@
                             echo "<a href='/category/?type={$info['postCategory']}'>목록보기</a>";
                         ?>
                     </section>
-                    <section>
+
+                    <section class="status">
                         <?php
                             echo "
-                                <div class='item'>
+                                <button type='button' class='item like'>
                                     <img src='/src/assets/images/icon/ico-like-stroke.svg' alt='좋아요'>
-                                    <p class='like'>{$info['postLike']}</p>
-                                </div>
-                                <div class='item'>
+                                    <p class='countLike'>{$countLikes}</p>
+                                </button>
+                                <button type='button' class='item'>
                                     <img src='/src/assets/images/icon/ico-view.svg' alt='조회수'>
-                                    <p class='view'>{$info['postView']}</p>
-                                </div>
+                                    <p class='countView'>{$info['postView']}</p>
+                                </button>
+
+                                <input type='hidden' name='postID' id='postID' value='".$postID."' />
+                                <input type='hidden' name='memberID' id='memberID' value='".$memberID."' />
                             ";
                         ?>
                     </section>
@@ -132,6 +148,7 @@
         import { hljs } from "/src/utils/highlight.min.js";
 
         pageController.category.view();
+        pageController.common.sendLike();
         hljs.highlightAll();
     </script>
 </html>
