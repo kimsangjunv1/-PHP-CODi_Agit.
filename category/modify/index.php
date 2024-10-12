@@ -72,7 +72,10 @@
 
                             <section>
                                 <label for="postContents" class="blind">내용</label>
-                                <?php echo "<textarea name='postContents' id='postContents' rows='20' style='display:none;'>".htmlspecialchars($info['postContents'])."</textarea>" ?>
+                                <?php
+                                    $formattedContent = htmlspecialchars($info['postContents'], ENT_QUOTES, 'UTF-8');
+                                    echo "<textarea name='postContents' id='postContents' rows='20' style='display:none;'>$formattedContent</textarea>";
+                                ?>
                             </section>
 
                             <section>
@@ -115,7 +118,6 @@
             let valueContents = document.querySelector("#postContents").value;
 
             pageController.category.modifyNew(valueContents);  // category 함수 추출
-            pageController.category.view();
             hljs.highlightAll();
         </script>
         <!-- 스크립트 -->
