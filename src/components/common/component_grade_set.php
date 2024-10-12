@@ -16,4 +16,10 @@ Like 30 + Login 30 =
 Like 60 + Login 60 =
 Like 100 + Login 100 =
 Like 150 + Login 150 =
+
+// boardLikes 테이블에서 로그인한 세션 memberID가 Likes, 일정 이상 boardMember에서 로그인 횟수가 일정 이상 이면
+// 그에 맞게 등급 (1 ~ 5) 부여
+
+// 로그인 횟수를 알아내려면
+// lastLogin이 오늘 12시 이내면 로그인 이미 함
 -->

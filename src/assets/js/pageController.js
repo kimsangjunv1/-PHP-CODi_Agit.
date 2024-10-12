@@ -287,7 +287,7 @@ export class pageController {
                 } catch (error) {
                     console.error("반영 중 실패:", error);
                 }
-            }
+            };
 
             elementsLike.forEach((e, i) => {
                 let isNeedPrevent = false;
@@ -317,8 +317,7 @@ export class pageController {
                         setTimeout(() => setStatePrevent(), 1000);
                     }
                 })
-            })
-
+            });
         },
 
         // 함수 : 현재 스크롤 값 반환

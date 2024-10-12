@@ -20,7 +20,6 @@
     $sql = "SELECT * FROM boardLikes WHERE memberID = ? AND postID = ?";
     $result = $connect->prepare($sql);
 
-
     // i: 정수 (integer)
 	// s: 문자열 (string)
 	// d: 실수 (double)
@@ -31,23 +30,23 @@
 
     $isAvailiable = $result -> num_rows > 0;
 
-    if ($isAvailiable) {
-        // 이미 좋아요를 눌렀다면, 좋아요 취소
-        $sql = "DELETE FROM boardLikes WHERE memberID = ? AND postID = ?";
+    // 이미 좋아요를 눌렀다면, 좋아요 취소
+    // 좋아요를 누르지 않았다면, 새로 좋아요 추가
+    $sql = $isAvailiable ? "
+        DELETE FROM boardLikes WHERE memberID = ? AND postID = ?
+        " : "
+        INSERT INTO boardLikes (memberID, postID) VALUES (?, ?)
+    ";
 
-        $result = $connect->prepare($sql);
-        $result -> bind_param("ii", $memberID, $postID);
-        $result -> execute();
+    $result = $connect->prepare($sql);
+    $result -> bind_param("ii", $memberID, $postID);
+    $result -> execute();
+    
+    $message = $isAvailiable ? [
+        'success' => true, 'message' => '좋아요 취소됨', 'stat' => 0
+        ] : [
+        'success' => true, 'message' => '좋아요 추가됨', 'stat' => 1
+    ];
 
-        echo json_encode(['success' => true, 'message' => '좋아요 취소됨', 'stat' => 0]);
-    } else {
-        // 좋아요를 누르지 않았다면, 새로 좋아요 추가
-        $sql = "INSERT INTO boardLikes (memberID, postID) VALUES (?, ?)";
-
-        $result = $connect->prepare($sql);
-        $result -> bind_param("ii", $memberID, $postID);
-        $result -> execute();
-
-        echo json_encode(['success' => true, 'message' => '좋아요 추가됨', 'stat' => 1]);
-    }
+    echo json_encode($message);
 ?>
