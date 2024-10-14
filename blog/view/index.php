@@ -106,11 +106,11 @@
                             $postID = $connect -> real_escape_string(trim($_GET['postID']));
     
                             if ($memberGrade == 2) {
-                                echo "<a href='/category/modify?postID={$postID}'>수정하기</a>";
-                                echo "<a href='/category/modify/remove?postID={$postID}'>삭제하기</a>";
+                                echo "<a href='/blog/modify?postID={$postID}'>수정하기</a>";
+                                echo "<a href='/blog/modify/remove?postID={$postID}'>삭제하기</a>";
                             };
 
-                            echo "<a href='/category/?type={$info['postCategory']}'>목록보기</a>";
+                            echo "<a href='/blog/?type={$info['postCategory']}'>목록보기</a>";
                         ?>
                     </section>
 
@@ -127,7 +127,6 @@
                                 </button>
 
                                 <input type='hidden' name='postID' id='postID' value='".$postID."' />
-                                <input type='hidden' name='memberID' id='memberID' value='".$memberID."' />
                             ";
                         ?>
                     </section>
@@ -142,6 +141,24 @@
 
         <?php include $rootPath . "/src/components/layout/footer.php"?>
     </body>
+
+    <!-- giscus 임시 비활성화 2024.10.13 -->
+    <!-- <script src="https://giscus.app/client.js"
+            data-repo="kimsangjunv1/-PHP-CODi_Agit."
+            data-repo-id="R_kgDOIhytwg"
+            data-category="Q&A"
+            data-category-id="DIC_kwDOIhytws4CjTiC"
+            data-mapping="url"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="light"
+            data-lang="ko"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async>
+    </script> -->
 
     <script type="module" defer>
         import { pageController } from "/src/assets/js/pageController.js";

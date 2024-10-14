@@ -26,7 +26,7 @@
     //             $info = $result -> fetch_array(MYSQLI_ASSOC);
 
     //             echo "
-    //                 <a href='/category/view?postID={$info['postID']}' class='item {$direction}'>
+    //                 <a href='/blog/view?postID={$info['postID']}' class='item {$direction}'>
     //                     <img src='{$info['postImgFileUrl']}' alt='썸네일'>
                         
     //                     <section class='desc'>

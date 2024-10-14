@@ -35,7 +35,7 @@
                     $info = $result -> fetch_array(MYSQLI_ASSOC);
 
                     echo "
-                        <a href='/category/view?postID={$info['postID']}' class='item {$direction}'>
+                        <a href='/blog/view?postID={$info['postID']}' class='item {$direction}'>
                             <section class='contents'>
                                 <section class='container-pagination'>
                                     <p>NEW</p>

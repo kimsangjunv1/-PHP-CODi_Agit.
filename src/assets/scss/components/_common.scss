@@ -228,6 +228,23 @@
     }
 }
 
+#tab {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    width: 100%;
+    
+    > a {
+        font-size: 3.2rem;
+        font-weight: 700;
+        color: var(--color-gray-400);
+
+        &.active {
+            color: var(--color-gray-800);
+        }
+    }
+}
+
 #search {
     position: fixed;
     top: 0;

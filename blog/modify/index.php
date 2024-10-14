@@ -20,6 +20,8 @@
     $result = $connect -> query($sql);
 
     isset($result) && $info = $result -> fetch_array(MYSQLI_ASSOC);
+
+    $selectedType = $info['postCategory'];
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +51,7 @@
                         id="form"
                         method="post"
                         name="boardModify"
-                        action="/category/modify/save"
+                        action="/blog/modify/save"
                         enctype="multipart/form-data"
                     >
                         <fieldset>
@@ -59,9 +61,11 @@
                             <section>
                                 <label for="postCategory" class="blind">카테고리</label>
                                 <select name="postCategory" id="postCategory" class="select">
-                                    <option value="programmers" <? echo $info['postCategory'] == 'programmers' ? "selected" : '' ?> >프로그래머스</option>
-                                    <option value="tip" <?php echo $info['postCategory'] == 'tip' ? 'selected' : '' ?> >팁</option>
-                                    <option value="js" <?php echo $info['postCategory'] == 'js' ? 'selected' : '' ?> >자바스크립트</option>
+                                    <?php
+                                        $option = "option";
+                                
+                                        include $rootPath . "/src/components/common/component_category.php";
+                                    ?>
                                 </select>
                             </section>
 

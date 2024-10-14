@@ -22,6 +22,9 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /error/index.php [L]
 
+# category로 들어오는 연결 blog로 리다이렉트
+RewriteRule ^category/(.*)$ /blog/$1 [R=301,L]
+
 # 각 오류 발생시 error 라우트 연결
 ErrorDocument 404 /error/index.php
 ErrorDocument 500 /error/index.php

@@ -24,8 +24,8 @@
     $result = $connect -> query($sql);
 
     if ( $result ) {
-        echo "이름의 테이블 생성을 성공 하였습니다.";
+        echo "포스트 테이블 생성을 성공 하였습니다.";
     } else {
-        echo "테이블 생성에 실패 하였습니다." . $connect->error;
+        echo "포스트 테이블 생성에 실패 하였습니다." . $connect->error;
     }
 ?>

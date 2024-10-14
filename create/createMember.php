@@ -22,8 +22,8 @@
     $result = $connect -> query($sql);
 
     if ( $result ) {
-        echo "테이블 생성 성공 하였습니다.";
+        echo "회원 테이블 생성 성공 하였습니다.";
     } else {
-        echo "테이블 생성에 실패 하였습니다.";
+        echo "회원 테이블 생성에 실패 하였습니다.";
     }
 ?>

@@ -32,6 +32,6 @@
     // 쿼리 전송
     $connect -> query($sql);
 
-    Header("Location: /category/?type=");
+    Header("Location: /blog/?type=");
     exit();  // 스크립트 종료
 ?>

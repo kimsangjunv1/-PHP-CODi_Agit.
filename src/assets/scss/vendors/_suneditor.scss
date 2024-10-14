@@ -429,7 +429,9 @@
 
 .sun-editor .se-toolbar.se-toolbar-sticky {
     position: fixed;
-    top: 0
+    top: calc(var(--header-height) - 3.3rem) !important;
+    left: 0;
+    width: 100% !important;
 }
 
 .sun-editor .se-toolbar-sticky-dummy {
@@ -539,7 +541,8 @@
     width: 100%;
     height: auto;
     padding: 4px 3px 0;
-    margin: 0
+    margin: 0 auto !important;
+    max-width: var(--pc);
 }
 
 .sun-editor .se-menu-tray {
@@ -2350,7 +2353,9 @@
 
 .sun-editor-editable p {
     display: block;
-    margin: 0 0 10px
+    margin: 0 0 0.4rem;
+    min-height: 0.8rem;
+    color: var(--color-gray-700);
 }
 
 .sun-editor-editable div {
@@ -2394,12 +2399,21 @@
 
 .sun-editor-editable h1,.sun-editor-editable h2 {
     display: block;
-    margin-inline-start:0;margin-inline-end:0;font-weight: 700
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: 700;
+    color: var(--color-gray-700);
 }
 
 .sun-editor-editable h2 {
     font-size: 1.5em;
-    margin-block-start:.83em;margin-block-end:.83em}
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    color: var(--color-gray-600);
+    background: var(--color-gray-100);
+    padding: 1.2rem;
+    border-radius: 1.2rem;
+}
 
 .sun-editor-editable h3 {
     font-size: 1.17em;
@@ -2606,10 +2620,12 @@
 }
 
 .sun-editor-editable figure figcaption {
-    padding: 1em .5em;
+    color: var(--color-gray-500);
+    outline: none;
     margin: 0;
-    background-color: #f9f9f9;
-    outline: none
+    padding: 1.2rem;
+    border: 1px solid var(--color-gray-300);
+    border-radius: 1.2rem;
 }
 
 .sun-editor-editable figure figcaption p {

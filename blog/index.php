@@ -53,7 +53,7 @@
                 <?php
                     $pathName = "category";
 
-                    include $rootPath . "/src/components/routes/category/section_post_tab.php"; 
+                    include $rootPath . "/src/components/routes/blog/section_post_tab.php"; 
                 ?>
 
                 <article class="contents">
@@ -80,7 +80,7 @@
                                     JOIN boardMember m
                                     ON (b.memberID = m.memberID)
                                     ORDER BY postID DESC
-                                ";          
+                                ";
                             }
         
                             include $rootPath . "/src/components/common/component_post.php";
@@ -90,19 +90,16 @@
     
                     <!-- 페이지네이션 컴포넌트 -->
                     <?php 
-                        // 필요한 데이터를 정의
-                        $pathName = "category";
-    
+                        $pathName = "blog";
+                        
                         include $rootPath . "/src/components/common/component_pagination.php";
                     ?>
                     <!-- 페이지네이션 컴포넌트 END -->
 
                     <?php
-                        $currentPath = "category";
-
                         if ($memberGrade == 2) {
                             echo "
-                                <a href='/{$currentPath}/write?type={$type}' class='floating'>
+                                <a href='/blog/write?type={$type}' class='floating'>
                                     <img src='/src/assets/images/icon/ico-write.svg' alt='글쓰기'>
                                 </a>
                             ";

@@ -13,7 +13,7 @@
     include $rootPath . "/src/components/common/component_session.php";
     include $rootPath . "/src/components/common/component_grade_check.php";
 
-    $type = $_GET['type'];
+    $selectedType = $_GET['type'];
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +40,7 @@
                     <form 
                         id="form"
                         method="post"
-                        action="/category/write/save"
+                        action="/blog/write/save"
                         enctype="multipart/form-data"
                     >
                         <fieldset>
@@ -49,9 +49,11 @@
                             <section>
                                 <label for="postCategory" class="blind">카테고리</label>
                                 <select name="postCategory" id="postCategory" class="select">
-                                    <option value="programmers" <? echo $type == 'programmers' ? "selected" : '' ?> >프로그래머스</option>
-                                    <option value="tip" <?php echo $type == 'tip' ? 'selected' : '' ?> >팁</option>
-                                    <option value="js" <?php echo $type == 'js' ? 'selected' : '' ?> >자바스크립트</option>
+                                    <?php
+                                        $option = "option";
+                                
+                                        include $rootPath . "/src/components/common/component_category.php";
+                                    ?>
                                 </select>
                             </section>
 

@@ -20,7 +20,7 @@
         $sql = "DELETE FROM boardPost WHERE postID = {$postID} && memberID = {$memberID}";
         $connect -> query($sql);
 
-        Header("Location: /category");
+        Header("Location: /blog");
     } else {
         echo "
             <script>

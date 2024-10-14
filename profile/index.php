@@ -65,6 +65,41 @@
                         ";
                     }
                 ?>
+
+                <article class="manage">
+                    <?php
+                        $option="button";
+                        
+                        include $rootPath . "/src/components/common/component_category.php";
+                    ?>
+
+                    <form 
+                        action="/category/save" 
+                        method="POST"
+                    >
+                        <fieldset>
+                            <legend class="blind">카테고리 추가 폼</legend>
+
+                            <section>
+                                <label for="titleKor" class="label">한국어</label>
+                                <input name="categoryTitleKor" id="titleKor" type="text">
+                            </section>
+
+                            <section>
+                                <label for="titleEng" class="label">영어</label>
+                                <input name="categoryTitleEng" id="titleEng" type="text">
+                            </section>
+
+                            <section>
+                                <label for="description" class="label">설명</label>
+                                <input name="categoryDescription" id="description" type="text">
+                            </section>
+
+                            <button type="submit" class="button border lg">추가하기</button>
+                        </fieldset>
+                    </form>
+                </article>
+
                 <article class="state">
                     <?php
                         // if (!$isGuest) {

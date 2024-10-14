@@ -1,29 +1,30 @@
 
 .sun-editor-editable pre {
-    // height: 100%;
+    display: flex;
 }
 
 .sun-editor-editable pre code.hljs {
     display: block;
     overflow-x: auto;
-    padding: 20px;
-    font-family: 'SUITE';
-    line-height: 1.6;
-    border-radius: 5px;
+    padding: 1.6rem;
+    font-family: "SUITE";
+    line-height: 1.5;
+    border-radius: 1.2rem;
     height: 100%;
+    width: 100%;
 }
 
 .sun-editor-editable code.hljs {
     padding: 3px 5px
 }
 .hljs {
-    color: #E9E9F4;
-    background: #282936
+    color: var(--color-gray-200);
+    background: var(--color-gray-900);
 }
 .hljs ::selection,
 .hljs::selection {
     background-color: #4D4F68;
-    color: #E9E9F4
+    color: var(--color-gray-200)
 }
 .hljs-comment {
     color: #626483

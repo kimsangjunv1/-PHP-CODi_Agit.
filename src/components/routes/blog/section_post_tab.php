@@ -1,7 +1,7 @@
 <article id="tab">
     <?php
         $option = "anchor";
-        $path = "home";
+        $path = "blog";
 
         include $rootPath . "/src/components/common/component_category.php";
     ?>

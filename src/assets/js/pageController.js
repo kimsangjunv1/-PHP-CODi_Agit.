@@ -111,41 +111,24 @@ export class pageController {
         },
         
         specific: () => {
-            const buttons = document.querySelectorAll("#tab button");
-            const element = document.querySelectorAll("#home article");
+            // 탭 클릭 시 스크롤 위치를 기록
+            const elementsTab = document.querySelector("#tab");
+            const elementsItem = elementsTab.querySelectorAll("a");
+            const scrollValue = sessionStorage.scrollY;
 
-            let idName = "js";
+            // 탭에 클릭 발생시 스크롤 위치 기록
+            elementsItem.forEach((e, i) => {
+                e.addEventListener("click", () => {
+                    const scrollPosition = window.scrollY;
+        
+                    sessionStorage.setItem("scrollY", scrollPosition);
+                })
+            });
 
-            const removeClassNameNone = () => {
-                element.forEach((e, i) => {
-                    if (e.id !== "showcase" && e.id !== "all" && e.id !== "tab") {
-                        e.classList.add("none")
-                    };
-
-                    if (idName === '') {
-                        idName = "programmers";
-                    };
-
-                    if (e.id === idName) {
-                        e.classList.remove("none");
-                    };
-                });
+            if (scrollValue) {
+                window.scrollTo(0, scrollValue);
+                sessionStorage.removeItem("scrollY");
             }
-
-            if (buttons) {
-                buttons.forEach((e, i) => {
-                    // 각 버튼에 클릭 이벤트 추가
-                    e.addEventListener("click", (event) => {
-                        buttons.forEach(button => button.classList.remove("active"));
-                        event.target.classList.add("active");
-                        idName = event.target.value;
-                
-                        removeClassNameNone();
-                    });
-                });
-            };
-
-            removeClassNameNone();
         }
     }
 
@@ -266,7 +249,6 @@ export class pageController {
             const elementsLike = document.querySelectorAll(".like");
 
             const postID = document.querySelector("#postID").value;
-            const memberID = document.querySelector("#memberID").value;
 
             const getLike = async() => {
                 try {
@@ -276,14 +258,18 @@ export class pageController {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            memberID: memberID,
                             postID: postID,
                         }),
                     });
 
                     const result = await response.json();
     
-                    return result.success && result.stat;
+                    // 
+                    if (result.stat == 2) {
+                        window.location.href = '/login'
+                    } else {
+                        return result.success && result.stat;
+                    }
                 } catch (error) {
                     console.error("반영 중 실패:", error);
                 }
@@ -301,7 +287,6 @@ export class pageController {
                 // 함수 : 이벤트 방지 상태 업데이트
                 const setStatePrevent = () => {
                     isNeedPrevent = !isNeedPrevent;
-                    console.log("막기 상태", isNeedPrevent);
                 }
 
                 
@@ -343,9 +328,6 @@ export class pageController {
         saveImgToUrl: async(blob) => {
             const formData = new FormData();
             formData.append("imgFile", blob); // 서버에서 받을 이름과 맞춤
-
-            console.log("blob : ", blob);
-            console.log("formdata : ", formData);
 
             try {
                 const response = await fetch("/src/api/controller_upload.php", {

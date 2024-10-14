@@ -607,25 +607,6 @@ main {
     &#category {
         // 공통
         .container-inner {
-            > #tab {
-                display: flex;
-                flex-direction: row;
-                // margin-top: 4rem;
-                gap: 2rem;
-                width: 100%;
-                
-                > a {
-                    font-size: 3.2rem;
-                    font-weight: 700;
-                    color: var(--color-gray-400);
-
-                    &.active {
-                        color: var(--color-gray-800);
-                    }
-                }
-
-            }
-
             .info {
                 display: flex;
                 width: 100%;
@@ -775,17 +756,10 @@ main {
                     &.main {
                         max-width: var(--tablet);
 
-                        pre {
-                            width: 100%;
-                            overflow: auto;
-                            margin: 1.6rem 0;
-                            border-radius: 1.2rem;
-                        }
-
                         > div {
                             figure {
                                 img {
-                                    border-radius: 1.6rem;
+                                    border-radius: 1.2rem;
                                     margin: 1.6rem 0;
                                 }
                             }
@@ -919,6 +893,15 @@ main {
                     }
                 }
 
+                &.manage {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.2rem;
+                    border: 1px solid var(--color-gray-200);
+                    border-radius: 1.6rem;
+                    padding: 1.6rem;
+                }
+
                 &.details {
                     display: flex;
                     flex-direction: column;
@@ -937,7 +920,9 @@ main {
                         }
                     }
                 }
+
                 &.state {}
+
                 &.remove {}
             }
         }

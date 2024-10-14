@@ -28,7 +28,7 @@
         ";
         $connect -> query($sql);
 
-        Header("Location: /category/view/?postID={$postID}");
+        Header("Location: /blog/view/?postID={$postID}");
         exit();  // 스크립트 종료
     } else {
         echo "<script>alert('비밀번호가 일치하지 않습니다. 다시 한번 확인해주세요!!')</script>";

@@ -12,6 +12,9 @@
     // MySQL 연결
     include $rootPath . "/src/components/common/component_connect.php";
     include $rootPath . "/src/components/common/component_session.php";
+
+    $isTypeAvailable = isset($_GET['type']) ? $_GET['type'] : "";
+    $selectedType = $connect -> real_escape_string(trim($isTypeAvailable));
 ?>
 
 <!DOCTYPE html>

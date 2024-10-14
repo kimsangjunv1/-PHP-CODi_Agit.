@@ -25,11 +25,13 @@
             $startPage = max( 1, $page - $pageCurrent );
             $endPage = min( $totalPages, $page + $pageCurrent );
 
+            $isAvailableKeyword = isset($searchKeyword) ? "&keyword={$searchKeyword}" : "";
+
             // 이전 페이지, 처음 페이지
             // <li><a href='/" . $pathName . $search . "?page=1{$searchType}'>&lt;&lt;</a></li>
             if ( $page > 1 ) {
                 echo "
-                    <li><a href='/{$pathName}/?page=" . ($page - 1) . "&type={$searchType}'>&lt;</a></li>
+                    <li><a href='/{$pathName}/?page=" . ($page - 1) . "&type={$searchType}{$isAvailableKeyword}'>&lt;</a></li>
                 ";
             }
 
@@ -38,14 +40,14 @@
                 $active = ($i == $page) ? "active" : ""; // 활성화 클래스 설정
 
                 echo "
-                    <li class='{$active}'><a href='/{$pathName}/?page={$i}&type={$searchType}'>{$i}</a></li>
+                    <li class='{$active}'><a href='/{$pathName}/?page={$i}&type={$searchType}{$isAvailableKeyword}'>{$i}</a></li>
                 ";
             }
             
             // 다음 페이지, 마지막 페이지
             if ( $page < $totalPages ) {
                 echo "
-                    <li><a href='/{$pathName}/?page=" . ($page + 1) . "&type={$searchType}'>&gt;</a></li>
+                    <li><a href='/{$pathName}/?page=" . ($page + 1) . "&type={$searchType}{$isAvailableKeyword}'>&gt;</a></li>
                 ";
             }
             // <li><a href='/" . $pathName . $search . "?page={$totalPages}{$searchType}'>&gt;&gt;</a></li>

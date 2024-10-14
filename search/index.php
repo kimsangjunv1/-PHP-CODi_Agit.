@@ -8,7 +8,9 @@
     include $rootPath . "/src/components/common/component_connect.php";
     include $rootPath . "/src/components/common/component_session.php";
 
-    $searchKeyword = $connect -> real_escape_string(trim($_POST['keyword']));
+    $searchKeyword = isset($_POST['keyword']) ? 
+        $connect->real_escape_string(trim($_POST['keyword'])) : 
+        (isset($_GET['keyword']) ? $connect->real_escape_string(trim($_GET['keyword'])) : '');
     $searchOption = $connect -> real_escape_string(trim($_POST['option']));
 
     // SEO

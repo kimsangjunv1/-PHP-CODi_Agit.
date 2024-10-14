@@ -13,7 +13,7 @@
             <nav class="menu">
                 <section>
                     <a href="/home">홈</a>
-                    <a href="/category?type=">카테고리</a>
+                    <a href="/blog?type=">블로그</a>
                     <button type="button" class="btn-search-control" value=1>
                         <img src="/src/assets/images/icon/ico-search.svg" alt="검색">
                     </button>

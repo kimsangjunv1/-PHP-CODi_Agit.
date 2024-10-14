@@ -14,7 +14,7 @@
     
     $data = json_decode(file_get_contents("php://input"), true);
     $postID = $data['postID'];
-    $memberID = $data['memberID'];
+    $memberID = isset($_SESSION['memberID']) && $_SESSION['memberID'];
 
     // 먼저 로그인한 사용자가 이 게시물에 이미 좋아요를 눌렀는지 확인
     $sql = "SELECT * FROM boardLikes WHERE memberID = ? AND postID = ?";
@@ -30,23 +30,27 @@
 
     $isAvailiable = $result -> num_rows > 0;
 
-    // 이미 좋아요를 눌렀다면, 좋아요 취소
-    // 좋아요를 누르지 않았다면, 새로 좋아요 추가
-    $sql = $isAvailiable ? "
-        DELETE FROM boardLikes WHERE memberID = ? AND postID = ?
-        " : "
-        INSERT INTO boardLikes (memberID, postID) VALUES (?, ?)
-    ";
+    if ($memberID) {
+        // 이미 좋아요를 눌렀다면, 좋아요 취소
+        // 좋아요를 누르지 않았다면, 새로 좋아요 추가
+        $sql = $isAvailiable ? "
+            DELETE FROM boardLikes WHERE memberID = ? AND postID = ?
+            " : "
+            INSERT INTO boardLikes (memberID, postID) VALUES (?, ?)
+        ";
 
-    $result = $connect->prepare($sql);
-    $result -> bind_param("ii", $memberID, $postID);
-    $result -> execute();
+        $result = $connect->prepare($sql);
+        $result -> bind_param("ii", $memberID, $postID);
+        $result -> execute();
     
-    $message = $isAvailiable ? [
-        'success' => true, 'message' => '좋아요 취소됨', 'stat' => 0
-        ] : [
-        'success' => true, 'message' => '좋아요 추가됨', 'stat' => 1
-    ];
+        $message = $isAvailiable ? [
+            'success' => true, 'message' => '좋아요 취소됨', 'stat' => 0
+            ] : [
+            'success' => true, 'message' => '좋아요 추가됨', 'stat' => 1
+        ];
+    } else {
+        $message = ['success' => true, 'message' => '로그인이 필요합니다.', 'stat' => 2];
+    }
 
     echo json_encode($message);
 ?>
