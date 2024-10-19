@@ -233,11 +233,13 @@
     flex-direction: row;
     gap: 2rem;
     width: 100%;
+    overflow: auto;
     
     > a {
         font-size: 3.2rem;
         font-weight: 700;
         color: var(--color-gray-400);
+        text-wrap: nowrap;
 
         &.active {
             color: var(--color-gray-800);

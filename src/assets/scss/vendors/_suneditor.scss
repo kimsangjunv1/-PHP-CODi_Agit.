@@ -2232,15 +2232,16 @@
 }
 
 .sun-editor-editable {
-    font-family: Helvetica Neue;
-    font-size: 13px;
-    color: #333;
+    font-weight: 300;
+    font-family: 'SUIT',Helvetica Neue;
+    font-size: 1.4rem;
+    font-feature-settings: 'ss01';
     background-color: #fff;
-    line-height: 1.5;
+    line-height: 1.8;
     word-break: normal;
     word-wrap: break-word;
     padding: 16px;
-    margin: 0
+    margin: 0;
 }
 
 .sun-editor-editable * {
@@ -2354,8 +2355,9 @@
 .sun-editor-editable p {
     display: block;
     margin: 0 0 0.4rem;
-    min-height: 0.8rem;
+    min-height: 1.4rem;
     color: var(--color-gray-700);
+    font-weight: 500;
 }
 
 .sun-editor-editable div {

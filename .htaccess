@@ -23,6 +23,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /error/index.php [L]
 
 # category로 들어오는 연결 blog로 리다이렉트
+RewriteCond %{REQUEST_URI} !^/category/save
+RewriteCond %{REQUEST_URI} !^/category/remove
 RewriteRule ^category/(.*)$ /blog/$1 [R=301,L]
 
 # 각 오류 발생시 error 라우트 연결
