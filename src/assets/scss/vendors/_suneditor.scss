@@ -2369,11 +2369,18 @@
 .sun-editor-editable blockquote {
     display: block;
     font-family: inherit;
-    font-size: inherit;
-    color: #999;
-    margin-block-start:1em;margin-block-end:1em;margin-inline-start:0;margin-inline-end:0;padding: 0 5px 0 20px;
-    border: solid #b1b1b1;
-    border-width: 0 0 0 5px
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding: 1.2rem;
+    border: solid var(--color-brand-500);
+    border-width: 0 0 0 5px;
+    font-size: 1.6rem;
+
+    > h3 {
+        margin: 0;
+    }
 }
 
 .sun-editor-editable blockquote blockquote {

@@ -50,6 +50,15 @@
 
 <!-- 스크립트 -->
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8WYZ49X8H2"></script>
+<script>
+    // <!-- Google tag (gtag.js) -->
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8WYZ49X8H2');
+</script>
 <script type="module" defer>
     import { pageController } from "/src/assets/js/pageController.js";
 

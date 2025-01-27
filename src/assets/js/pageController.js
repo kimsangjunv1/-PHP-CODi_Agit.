@@ -187,7 +187,6 @@ export class pageController {
                     e.innerHTML = `
                         <code>${value}</code>
                     `
-                    e.classList.add("asdasdasd");
                 } else {
                     elementCode.classList.add("hljs");
                 }
